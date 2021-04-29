@@ -1,0 +1,29 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "environmental"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#F#",
+    "CCC"
+  ],
+  "key": {
+    "#": {
+      "item": "environmental:mud_bricks"
+    },
+    "F": {
+      "item": "brickfurnace:brick_furnace"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "environmental:kiln",
+    "count": 1
+  }
+}
