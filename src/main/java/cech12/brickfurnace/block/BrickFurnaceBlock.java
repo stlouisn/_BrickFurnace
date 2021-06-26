@@ -1,7 +1,6 @@
 package cech12.brickfurnace.block;
 
 import cech12.brickfurnace.tileentity.BrickFurnaceTileEntity;
-import net.minecraft.block.Block;
 import net.minecraft.block.FurnaceBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -13,14 +12,16 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.block.AbstractBlock;
+
 public class BrickFurnaceBlock extends FurnaceBlock {
 
-    public BrickFurnaceBlock(Block.Properties builder) {
+    public BrickFurnaceBlock(AbstractBlock.Properties builder) {
         super(builder);
     }
 
     @Override
-    public TileEntity createNewTileEntity(@Nonnull IBlockReader worldIn) {
+    public TileEntity newBlockEntity(@Nonnull IBlockReader worldIn) {
         return new BrickFurnaceTileEntity();
     }
 
@@ -29,11 +30,11 @@ public class BrickFurnaceBlock extends FurnaceBlock {
      * inside AbstractFurnaceBlock.
      */
     @Override
-    protected void interactWith(World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player) {
-        TileEntity tileentity = worldIn.getTileEntity(pos);
+    protected void openContainer(World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player) {
+        TileEntity tileentity = worldIn.getBlockEntity(pos);
         if (tileentity instanceof BrickFurnaceTileEntity) {
-            player.openContainer((INamedContainerProvider)tileentity);
-            player.addStat(Stats.INTERACT_WITH_FURNACE);
+            player.openMenu((INamedContainerProvider)tileentity);
+            player.awardStat(Stats.INTERACT_WITH_FURNACE);
         }
 
     }

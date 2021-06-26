@@ -42,7 +42,7 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
     protected ItemStack failedMatch = ItemStack.EMPTY;
 
     private boolean isBurning() {
-        return this.furnaceData.get(BURN_TIME) > 0; //changed because of private variable
+        return this.dataAccess.get(BURN_TIME) > 0; //changed because of private variable
     }
 
     @Override
@@ -50,17 +50,17 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
         boolean wasBurning = this.isBurning();
         boolean dirty = false;
         if (this.isBurning()) {
-            this.furnaceData.set(BURN_TIME, this.furnaceData.get(BURN_TIME) - 1); //changed because of private variable
+            this.dataAccess.set(BURN_TIME, this.dataAccess.get(BURN_TIME) - 1); //changed because of private variable
         }
 
-        if (this.world != null && !this.world.isRemote) {
+        if (this.level != null && !this.level.isClientSide) {
             ItemStack fuel = this.items.get(FUEL);
             if (this.isBurning() || !fuel.isEmpty() && !this.items.get(INPUT).isEmpty()) {
                 AbstractCookingRecipe irecipe = getRecipe();
-                boolean valid = this.canSmelt(irecipe);
+                boolean valid = this.canBurn(irecipe);
                 if (!this.isBurning() && valid) {
-                    this.furnaceData.set(BURN_TIME, this.getBurnTime(fuel)); //changed because of private variable
-                    this.furnaceData.set(RECIPES_USED, this.furnaceData.get(BURN_TIME)); //changed because of private variable
+                    this.dataAccess.set(BURN_TIME, this.getBurnDuration(fuel)); //changed because of private variable
+                    this.dataAccess.set(RECIPES_USED, this.dataAccess.get(BURN_TIME)); //changed because of private variable
                     if (this.isBurning()) {
                         dirty = true;
                         if (fuel.hasContainerItem()) this.items.set(1, fuel.getContainerItem());
@@ -74,40 +74,40 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
                 }
 
                 if (this.isBurning() && valid) {
-                    this.furnaceData.set(COOK_TIME, this.furnaceData.get(COOK_TIME) + 1); //changed because of private variable
-                    if (this.furnaceData.get(COOK_TIME) == this.furnaceData.get(COOK_TIME_TOTAL)) { //changed because of private variable
-                        this.furnaceData.set(COOK_TIME, 0); //changed because of private variable
-                        this.furnaceData.set(COOK_TIME_TOTAL, this.getCookTime()); //changed because of private variable
+                    this.dataAccess.set(COOK_TIME, this.dataAccess.get(COOK_TIME) + 1); //changed because of private variable
+                    if (this.dataAccess.get(COOK_TIME) == this.dataAccess.get(COOK_TIME_TOTAL)) { //changed because of private variable
+                        this.dataAccess.set(COOK_TIME, 0); //changed because of private variable
+                        this.dataAccess.set(COOK_TIME_TOTAL, this.getTotalCookTime()); //changed because of private variable
                         this.smeltItem(irecipe);
                         dirty = true;
                     }
                 } else {
-                    this.furnaceData.set(COOK_TIME, 0); //changed because of private variable
+                    this.dataAccess.set(COOK_TIME, 0); //changed because of private variable
                 }
-            } else if (!this.isBurning() && this.furnaceData.get(COOK_TIME) > 0) { //changed because of private variable
-                this.furnaceData.set(COOK_TIME, MathHelper.clamp(this.furnaceData.get(COOK_TIME) - 2, 0, this.furnaceData.get(COOK_TIME_TOTAL))); //changed because of private variable
+            } else if (!this.isBurning() && this.dataAccess.get(COOK_TIME) > 0) { //changed because of private variable
+                this.dataAccess.set(COOK_TIME, MathHelper.clamp(this.dataAccess.get(COOK_TIME) - 2, 0, this.dataAccess.get(COOK_TIME_TOTAL))); //changed because of private variable
             }
 
             if (wasBurning != this.isBurning()) {
                 dirty = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
             }
         }
 
         if (dirty) {
-            this.markDirty();
+            this.setChanged();
         }
 
     }
 
     @Override
-    protected boolean canSmelt(@Nullable IRecipe<?> recipe) {
+    protected boolean canBurn(@Nullable IRecipe<?> recipe) {
         if (!this.items.get(0).isEmpty() && recipe != null) {
-            ItemStack recipeOutput = recipe.getRecipeOutput();
+            ItemStack recipeOutput = recipe.getResultItem();
             if (!recipeOutput.isEmpty()) {
                 ItemStack output = this.items.get(OUTPUT);
                 if (output.isEmpty()) return true;
-                else if (!output.isItemEqual(recipeOutput)) return false;
+                else if (!output.sameItem(recipeOutput)) return false;
                 else return output.getCount() + recipeOutput.getCount() <= output.getMaxStackSize();
             }
         }
@@ -115,9 +115,9 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
     }
 
     private void smeltItem(@Nullable IRecipe<?> recipe) {
-        if (recipe != null && this.canSmelt(recipe)) {
+        if (recipe != null && this.canBurn(recipe)) {
             ItemStack itemstack = this.items.get(0);
-            ItemStack itemstack1 = recipe.getRecipeOutput();
+            ItemStack itemstack1 = recipe.getResultItem();
             ItemStack itemstack2 = this.items.get(2);
             if (itemstack2.isEmpty()) {
                 this.items.set(2, itemstack1.copy());
@@ -125,7 +125,7 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
                 itemstack2.grow(itemstack1.getCount());
             }
 
-            if (this.world != null && !this.world.isRemote) {
+            if (this.level != null && !this.level.isClientSide) {
                 this.setRecipeUsed(recipe);
             }
 
@@ -138,29 +138,29 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
     }
 
     @Override
-    protected int getCookTime() {
+    protected int getTotalCookTime() {
         AbstractCookingRecipe rec = getRecipe();
         if (rec == null) {
             return 200;
         } else if (this.specificRecipeType.getClass().isInstance(rec.getType())) {
-            return rec.getCookTime();
+            return rec.getCookingTime();
         }
-        return (int) (rec.getCookTime() * ServerConfig.COOK_TIME_FACTOR.get());
+        return (int) (rec.getCookingTime() * ServerConfig.COOK_TIME_FACTOR.get());
     }
 
     protected AbstractCookingRecipe getRecipe() {
-        ItemStack input = this.getStackInSlot(INPUT);
+        ItemStack input = this.getItem(INPUT);
         if (input.isEmpty() || input == failedMatch) {
             return null;
         }
-        if (this.world != null && curRecipe != null && curRecipe.matches(this, world)) {
+        if (this.level != null && curRecipe != null && curRecipe.matches(this, level)) {
             return curRecipe;
         } else {
             AbstractCookingRecipe rec = null;
-            if (this.world != null) {
-                rec = this.world.getRecipeManager().getRecipe(this.specificRecipeType, this, this.world).orElse(null);
+            if (this.level != null) {
+                rec = this.level.getRecipeManager().getRecipeFor(this.specificRecipeType, this, this.level).orElse(null);
                 if (rec == null && ServerConfig.VANILLA_RECIPES_ENABLED.get()) {
-                    rec = this.world.getRecipeManager().getRecipes(this.recipeType, this, this.world)
+                    rec = this.level.getRecipeManager().getRecipesFor(this.recipeType, this, this.level)
                             .stream().filter(abstractCookingRecipe -> ServerConfig.isRecipeNotBlacklisted(abstractCookingRecipe.getId())).findFirst().orElse(null);
                 }
             }

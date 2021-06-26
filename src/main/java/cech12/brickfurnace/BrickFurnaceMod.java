@@ -64,13 +64,10 @@ public class BrickFurnaceMod {
     }
 
     private static void addBlockStatesToPOIType(PointOfInterestType poiType, Block block) {
-        Set<BlockState> poiTypeStates = new HashSet<>(poiType.blockStates);
-        Set<BlockState> blockStates = new HashSet<>(block.getStateContainer().getValidStates());
+        Set<BlockState> poiTypeStates = new HashSet<>(poiType.getBlockStates());
+        Set<BlockState> blockStates = new HashSet<>(block.getStateDefinition().getPossibleStates());
         poiTypeStates.addAll(blockStates);
-        poiType.blockStates = ImmutableSet.copyOf(poiTypeStates);
-        for (BlockState state : blockStates) {
-            PointOfInterestType.POIT_BY_BLOCKSTATE.put(state, poiType);
-        }
+        poiType.matchingStates = ImmutableSet.copyOf(poiTypeStates);
     }
 
 }

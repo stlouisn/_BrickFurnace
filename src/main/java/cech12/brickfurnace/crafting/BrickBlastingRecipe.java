@@ -25,12 +25,12 @@ public class BrickBlastingRecipe extends AbstractCookingRecipe {
     }
 
     public static BrickBlastingRecipe convert(@Nonnull BlastingRecipe recipe) {
-        return new BrickBlastingRecipe(recipe.getId(), recipe.getGroup(), recipe.getIngredients().get(0), recipe.getRecipeOutput(), recipe.getExperience(), (int) (recipe.getCookTime() * ServerConfig.COOK_TIME_FACTOR.get()));
+        return new BrickBlastingRecipe(recipe.getId(), recipe.getGroup(), recipe.getIngredients().get(0), recipe.getResultItem(), recipe.getExperience(), (int) (recipe.getCookingTime() * ServerConfig.COOK_TIME_FACTOR.get()));
     }
 
     @Override
     @Nonnull
-    public ItemStack getIcon() {
+    public ItemStack getToastSymbol() {
         return new ItemStack(BrickFurnaceBlocks.BRICK_BLAST_FURNACE);
     }
 

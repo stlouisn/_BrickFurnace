@@ -38,20 +38,20 @@ public class BrickFurnaceJEIPlugin implements IModPlugin {
         ClientPlayerEntity player = Minecraft.getInstance().player;
         if (player != null) {
             RecipeManager manager = player.connection.getRecipeManager();
-            registration.addRecipes(manager.func_241447_a_(RecipeTypes.SMELTING), RecipeTypes.SMELTING_ID);
-            registration.addRecipes(manager.func_241447_a_(RecipeTypes.SMOKING), RecipeTypes.SMOKING_ID);
-            registration.addRecipes(manager.func_241447_a_(RecipeTypes.BLASTING), RecipeTypes.BLASTING_ID);
+            registration.addRecipes(manager.getAllRecipesFor(RecipeTypes.SMELTING), RecipeTypes.SMELTING_ID);
+            registration.addRecipes(manager.getAllRecipesFor(RecipeTypes.SMOKING), RecipeTypes.SMOKING_ID);
+            registration.addRecipes(manager.getAllRecipesFor(RecipeTypes.BLASTING), RecipeTypes.BLASTING_ID);
 
             if (ServerConfig.VANILLA_RECIPES_ENABLED.get()) {
-                registration.addRecipes(manager.func_241447_a_(IRecipeType.SMELTING).stream()
+                registration.addRecipes(manager.getAllRecipesFor(IRecipeType.SMELTING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
                         .map(BrickSmeltingRecipe::convert)
                         .collect(Collectors.toList()), RecipeTypes.SMELTING_ID);
-                registration.addRecipes(manager.func_241447_a_(IRecipeType.SMOKING).stream()
+                registration.addRecipes(manager.getAllRecipesFor(IRecipeType.SMOKING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
                         .map(BrickSmokingRecipe::convert)
                         .collect(Collectors.toList()), RecipeTypes.SMOKING_ID);
-                registration.addRecipes(manager.func_241447_a_(IRecipeType.BLASTING).stream()
+                registration.addRecipes(manager.getAllRecipesFor(IRecipeType.BLASTING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
                         .map(BrickBlastingRecipe::convert)
                         .collect(Collectors.toList()), RecipeTypes.BLASTING_ID);

@@ -25,12 +25,12 @@ public class BrickSmokingRecipe extends AbstractCookingRecipe {
     }
 
     public static BrickSmokingRecipe convert(@Nonnull SmokingRecipe recipe) {
-        return new BrickSmokingRecipe(recipe.getId(), recipe.getGroup(), recipe.getIngredients().get(0), recipe.getRecipeOutput(), recipe.getExperience(), (int) (recipe.getCookTime() * ServerConfig.COOK_TIME_FACTOR.get()));
+        return new BrickSmokingRecipe(recipe.getId(), recipe.getGroup(), recipe.getIngredients().get(0), recipe.getResultItem(), recipe.getExperience(), (int) (recipe.getCookingTime() * ServerConfig.COOK_TIME_FACTOR.get()));
     }
 
     @Override
     @Nonnull
-    public ItemStack getIcon() {
+    public ItemStack getToastSymbol() {
         return new ItemStack(BrickFurnaceBlocks.BRICK_SMOKER);
     }
 

@@ -26,7 +26,7 @@ public class BrickBlastFurnaceTileEntity extends AbstractBrickFurnaceTileEntity 
     @Override
     @Nonnull
     protected Container createMenu(int id, @Nonnull PlayerInventory player) {
-        return new BlastFurnaceContainer(id, player, this, this.furnaceData);
+        return new BlastFurnaceContainer(id, player, this, this.dataAccess);
     }
 
 }

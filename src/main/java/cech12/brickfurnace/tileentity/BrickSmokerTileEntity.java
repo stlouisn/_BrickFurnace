@@ -26,7 +26,7 @@ public class BrickSmokerTileEntity extends AbstractBrickFurnaceTileEntity {
     @Override
     @Nonnull
     protected Container createMenu(int id, @Nonnull PlayerInventory player) {
-        return new SmokerContainer(id, player, this, this.furnaceData);
+        return new SmokerContainer(id, player, this, this.dataAccess);
     }
 
 }
