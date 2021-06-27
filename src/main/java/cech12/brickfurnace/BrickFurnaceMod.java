@@ -21,8 +21,12 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.loading.FMLConfig;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Field;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static cech12.brickfurnace.BrickFurnaceMod.MOD_ID;
@@ -32,6 +36,7 @@ import static cech12.brickfurnace.BrickFurnaceMod.MOD_ID;
 public class BrickFurnaceMod {
 
     public static final String MOD_ID = "brickfurnace";
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public BrickFurnaceMod() {
         //Config
@@ -68,6 +73,17 @@ public class BrickFurnaceMod {
         Set<BlockState> blockStates = new HashSet<>(block.getStateDefinition().getPossibleStates());
         poiTypeStates.addAll(blockStates);
         poiType.matchingStates = ImmutableSet.copyOf(poiTypeStates);
+        try {
+            //accesstransformer cannot change access of TYPE_BY_STATE - use java reflection
+            Field typeByStateField = PointOfInterestType.class.getDeclaredField("TYPE_BY_STATE");
+            typeByStateField.setAccessible(true);
+            Map<BlockState, PointOfInterestType> typeByState = (Map<BlockState, PointOfInterestType>) typeByStateField.get(poiType);
+            for (BlockState blockState : blockStates) {
+                typeByState.put(blockState, poiType);
+            }
+        } catch (Throwable exception) {
+            LOGGER.warn("PointOfInterestType (" + poiType + ") - reflection of TYPE_BY_STATE failed", exception);
+        }
     }
 
 }
