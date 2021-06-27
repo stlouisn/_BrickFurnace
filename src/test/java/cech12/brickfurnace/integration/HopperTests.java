@@ -134,6 +134,33 @@ public class HopperTests {
         }
     }
 
-    //TODO output test
+    @IntegrationTest(value = "hoppers")
+    public void testOutputOfBrickFurnace(IntegrationTestHelper helper) {
+        testOutput(helper, BrickFurnaceBlocks.BRICK_FURNACE, Items.STONE);
+    }
+
+    @IntegrationTest(value = "hoppers")
+    public void testOutputOfBrickBlastFurnace(IntegrationTestHelper helper) {
+        testOutput(helper, BrickFurnaceBlocks.BRICK_BLAST_FURNACE, Items.IRON_INGOT);
+    }
+
+    @IntegrationTest(value = "hoppers")
+    public void testOutputOfBrickSmoker(IntegrationTestHelper helper) {
+        testOutput(helper, BrickFurnaceBlocks.BRICK_SMOKER, Items.CHARCOAL);
+    }
+
+    private void testOutput(IntegrationTestHelper helper, Block furnaceBlock, Item outputItem) {
+        helper.placeBlock(FURNACE_POSITION, Direction.NORTH, furnaceBlock);
+        AbstractBrickFurnaceTileEntity furnaceTileEntity = getFurnaceTileEntity(helper);
+        HopperTileEntity hopperTileEntity = getHopperTileEntity(helper, OUTPUT_HOPPER_POSITION);
+        if (furnaceTileEntity == null || hopperTileEntity == null) {
+            return;
+        }
+        ItemStack outputItemStack = new ItemStack(outputItem);
+        furnaceTileEntity.setItem(2, outputItemStack.copy());
+
+        helper.assertTrue(() -> furnaceTileEntity.getItem(2).isEmpty(), outputItemStack.getItem() + " should be removed from output slot of" + furnaceBlock);
+        helper.assertTrue(() -> hopperTileEntity.getItem(0).equals(outputItemStack, true), outputItemStack.getItem() + " should be inserted to output hopper");
+    }
 
 }
