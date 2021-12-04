@@ -1,0 +1,9 @@
+{
+  "type": "brickfurnace:smoking",
+  "ingredient": {
+    "item": "minecraft:wheat"
+  },
+  "result": "minecraft:bread",
+  "experience": 0.3,
+  "cookingtime": 100
+}
