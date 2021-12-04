@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.16.5-1.6.0.0] - 202?-??-??
+### Changed
+- Update mod to Forge 1.16.5-36.2.0
+- changed versioning to fit [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/)
+- change mappings to official channel
+- add some automated tests
+
 ## [1.5.2_1.16] - 2021-04-29
 ### Changed
 - added recipe variant for Environmental's kiln #9 (thanks to randomnickname2137 for the hint)

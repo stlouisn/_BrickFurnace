@@ -15,7 +15,7 @@ license="The MIT License (MIT)"
 [[dependencies.brickfurnace]]
     modId="forge"
     mandatory=true
-    versionRange="[36.1.0,)"
+    versionRange="[36.2.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.brickfurnace]]
@@ -27,6 +27,6 @@ license="The MIT License (MIT)"
 [[dependencies.brickfurnace]]
    modId="jei"
    mandatory=false
-   versionRange="[7.6.1.75,)"
+   versionRange="[7.7.1.115,)"
    ordering="NONE"
    side="BOTH"
