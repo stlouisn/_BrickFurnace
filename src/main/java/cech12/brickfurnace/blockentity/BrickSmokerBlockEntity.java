@@ -1,7 +1,7 @@
-package cech12.brickfurnace.tileentity;
+package cech12.brickfurnace.blockentity;
 
 import cech12.brickfurnace.api.crafting.RecipeTypes;
-import cech12.brickfurnace.api.tileentity.BrickFurnaceTileEntities;
+import cech12.brickfurnace.api.blockentity.BrickFurnaceBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -13,10 +13,10 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nonnull;
 
-public class BrickSmokerTileEntity extends AbstractBrickFurnaceTileEntity {
+public class BrickSmokerBlockEntity extends AbstractBrickFurnaceBlockEntity {
 
-    public BrickSmokerTileEntity(BlockPos blockPos, BlockState blockState) {
-        super(BrickFurnaceTileEntities.BRICK_SMOKER, blockPos, blockState, RecipeTypes.SMOKING, RecipeType.SMOKING);
+    public BrickSmokerBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(BrickFurnaceBlockEntities.BRICK_SMOKER, blockPos, blockState, RecipeTypes.SMOKING, RecipeType.SMOKING);
     }
 
     @Override

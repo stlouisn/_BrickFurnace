@@ -1,4 +1,4 @@
-package cech12.brickfurnace.tileentity;
+package cech12.brickfurnace.blockentity;
 
 import cech12.brickfurnace.config.ServerConfig;
 import net.minecraft.core.BlockPos;
@@ -17,17 +17,17 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceBlockEntity {
+public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
     protected final RecipeType<? extends AbstractCookingRecipe> specificRecipeType;
     protected final RecipeType<? extends AbstractCookingRecipe> vanillaRecipeType;
 
-    public AbstractBrickFurnaceTileEntity(BlockEntityType<?> tileTypeIn,
-                                          BlockPos blockPos,
-                                          BlockState blockState,
-                                          RecipeType<? extends AbstractCookingRecipe> specificRecipeTypeIn,
-                                          RecipeType<? extends AbstractCookingRecipe> vanillaRecipeTypeIn) {
-        super(tileTypeIn, blockPos, blockState, vanillaRecipeTypeIn);
+    public AbstractBrickFurnaceBlockEntity(BlockEntityType<?> blockEntityTypeIn,
+                                           BlockPos blockPos,
+                                           BlockState blockState,
+                                           RecipeType<? extends AbstractCookingRecipe> specificRecipeTypeIn,
+                                           RecipeType<? extends AbstractCookingRecipe> vanillaRecipeTypeIn) {
+        super(blockEntityTypeIn, blockPos, blockState, vanillaRecipeTypeIn);
         this.specificRecipeType = specificRecipeTypeIn;
         this.vanillaRecipeType = vanillaRecipeTypeIn;
     }
@@ -52,7 +52,7 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceBloc
         return this.dataAccess.get(BURN_TIME) > 0; //changed because of private variable
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, AbstractBrickFurnaceTileEntity entity) {
+    public static void tick(Level level, BlockPos pos, BlockState state, AbstractBrickFurnaceBlockEntity entity) {
         boolean wasBurning = entity.isBurning();
         boolean dirty = false;
         if (entity.isBurning()) {

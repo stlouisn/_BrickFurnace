@@ -1,8 +1,8 @@
 package cech12.brickfurnace.block;
 
-import cech12.brickfurnace.api.tileentity.BrickFurnaceTileEntities;
-import cech12.brickfurnace.tileentity.AbstractBrickFurnaceTileEntity;
-import cech12.brickfurnace.tileentity.BrickBlastFurnaceTileEntity;
+import cech12.brickfurnace.api.blockentity.BrickFurnaceBlockEntities;
+import cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
+import cech12.brickfurnace.blockentity.BrickBlastFurnaceBlockEntity;
 import net.minecraft.world.level.block.BlastFurnaceBlock;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.MenuProvider;
@@ -27,13 +27,13 @@ public class BrickBlastFurnaceBlock extends BlastFurnaceBlock {
 
     @Override
     public BlockEntity newBlockEntity(@Nonnull BlockPos blockPos, @Nonnull BlockState blockState) {
-        return new BrickBlastFurnaceTileEntity(blockPos, blockState);
+        return new BrickBlastFurnaceBlockEntity(blockPos, blockState);
     }
 
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockEntityType<T> entityType) {
-        return createTickerHelper(entityType, (BlockEntityType<AbstractBrickFurnaceTileEntity>) BrickFurnaceTileEntities.BRICK_BLAST_FURNACE, AbstractBrickFurnaceTileEntity::tick);
+        return createTickerHelper(entityType, (BlockEntityType<AbstractBrickFurnaceBlockEntity>) BrickFurnaceBlockEntities.BRICK_BLAST_FURNACE, AbstractBrickFurnaceBlockEntity::tick);
     }
 
     /**
@@ -42,9 +42,9 @@ public class BrickBlastFurnaceBlock extends BlastFurnaceBlock {
      */
     @Override
     protected void openContainer(Level worldIn, @Nonnull BlockPos pos, @Nonnull Player player) {
-        BlockEntity tileentity = worldIn.getBlockEntity(pos);
-        if (tileentity instanceof BrickBlastFurnaceTileEntity) {
-            player.openMenu((MenuProvider)tileentity);
+        BlockEntity blockEntity = worldIn.getBlockEntity(pos);
+        if (blockEntity instanceof BrickBlastFurnaceBlockEntity) {
+            player.openMenu((MenuProvider)blockEntity);
             player.awardStat(Stats.INTERACT_WITH_BLAST_FURNACE);
         }
 
