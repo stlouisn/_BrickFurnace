@@ -1,5 +1,5 @@
 package cech12.brickfurnace.recipe;
-
+/*
 import cech12.brickfurnace.BrickFurnaceMod;
 import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
 import cech12.brickfurnace.api.crafting.RecipeTypes;
@@ -143,3 +143,4 @@ public class RecipeTests {
     }
 
 }
+ */

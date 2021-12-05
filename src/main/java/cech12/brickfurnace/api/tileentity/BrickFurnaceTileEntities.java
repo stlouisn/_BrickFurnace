@@ -1,11 +1,11 @@
 package cech12.brickfurnace.api.tileentity;
 
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class BrickFurnaceTileEntities {
 
-    public static TileEntityType<?> BRICK_FURNACE;
-    public static TileEntityType<?> BRICK_BLAST_FURNACE;
-    public static TileEntityType<?> BRICK_SMOKER;
+    public static BlockEntityType<?> BRICK_FURNACE;
+    public static BlockEntityType<?> BRICK_BLAST_FURNACE;
+    public static BlockEntityType<?> BRICK_SMOKER;
 
 }

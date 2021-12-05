@@ -15,11 +15,11 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class BrickFurnaceJEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(@Nonnull IRecipeRegistration registration) {
-        ClientPlayerEntity player = Minecraft.getInstance().player;
+        LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             RecipeManager manager = player.connection.getRecipeManager();
             registration.addRecipes(manager.getAllRecipesFor(RecipeTypes.SMELTING), RecipeTypes.SMELTING_ID);
@@ -43,15 +43,15 @@ public class BrickFurnaceJEIPlugin implements IModPlugin {
             registration.addRecipes(manager.getAllRecipesFor(RecipeTypes.BLASTING), RecipeTypes.BLASTING_ID);
 
             if (ServerConfig.VANILLA_RECIPES_ENABLED.get()) {
-                registration.addRecipes(manager.getAllRecipesFor(IRecipeType.SMELTING).stream()
+                registration.addRecipes(manager.getAllRecipesFor(RecipeType.SMELTING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
                         .map(BrickSmeltingRecipe::convert)
                         .collect(Collectors.toList()), RecipeTypes.SMELTING_ID);
-                registration.addRecipes(manager.getAllRecipesFor(IRecipeType.SMOKING).stream()
+                registration.addRecipes(manager.getAllRecipesFor(RecipeType.SMOKING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
                         .map(BrickSmokingRecipe::convert)
                         .collect(Collectors.toList()), RecipeTypes.SMOKING_ID);
-                registration.addRecipes(manager.getAllRecipesFor(IRecipeType.BLASTING).stream()
+                registration.addRecipes(manager.getAllRecipesFor(RecipeType.BLASTING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
                         .map(BrickBlastingRecipe::convert)
                         .collect(Collectors.toList()), RecipeTypes.BLASTING_ID);

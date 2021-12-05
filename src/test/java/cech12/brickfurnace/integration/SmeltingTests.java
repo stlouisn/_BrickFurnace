@@ -1,5 +1,5 @@
 package cech12.brickfurnace.integration;
-
+/*
 import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
 import cech12.brickfurnace.tileentity.AbstractBrickFurnaceTileEntity;
 import com.alcatrazescapee.mcjunitlib.framework.IntegrationTest;
@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 
 @IntegrationTestClass(value = "furnace")
 public class SmeltingTests {
-/*
+    //NOTE: This test class was not tested before is was deactivated
     private static final BlockPos FURNACE_POSITION = new BlockPos(0, 1, 0);
 
     private AbstractBrickFurnaceTileEntity getFurnaceTileEntity(IntegrationTestHelper helper) {
@@ -46,6 +46,6 @@ public class SmeltingTests {
         helper.assertTrue(() -> furnaceTileEntity.getItem(0).equals(inputItemStack, true), inputItemStack.getItem() + " should be inserted to main slot of " + furnaceBlock);
     }
 
- */
 
 }
+ */

@@ -3,19 +3,19 @@ package cech12.brickfurnace.crafting;
 import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
 import cech12.brickfurnace.api.crafting.RecipeTypes;
 import cech12.brickfurnace.config.ServerConfig;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.SmokingRecipe;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SmokingRecipe;
+import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
 public class BrickSmokingRecipe extends AbstractCookingRecipe {
 
-    public static final CookingRecipeSerializer<BrickSmokingRecipe> SERIALIZER = new CookingRecipeSerializer<>(BrickSmokingRecipe::new, 100);
+    public static final SimpleCookingSerializer<BrickSmokingRecipe> SERIALIZER = new SimpleCookingSerializer<>(BrickSmokingRecipe::new, 100);
     static {
         SERIALIZER.setRegistryName(RecipeTypes.SMOKING_ID);
     }
@@ -36,7 +36,7 @@ public class BrickSmokingRecipe extends AbstractCookingRecipe {
 
     @Override
     @Nonnull
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "brickfurnace:brick_furnace",
+    "brickfurnace:brick_blast_furnace",
+    "brickfurnace:brick_smoker"
+  ]
+}

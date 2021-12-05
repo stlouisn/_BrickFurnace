@@ -1,5 +1,5 @@
 package cech12.brickfurnace.integration;
-
+/*
 import cech12.brickfurnace.IntegrationTestUtils;
 import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
 import com.alcatrazescapee.mcjunitlib.framework.IntegrationTest;
@@ -51,3 +51,4 @@ public class VillagerTests {
     }
 
 }
+ */

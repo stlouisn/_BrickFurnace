@@ -3,19 +3,19 @@ package cech12.brickfurnace.crafting;
 import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
 import cech12.brickfurnace.api.crafting.RecipeTypes;
 import cech12.brickfurnace.config.ServerConfig;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.BlastingRecipe;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.BlastingRecipe;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
 public class BrickBlastingRecipe extends AbstractCookingRecipe {
 
-    public static final CookingRecipeSerializer<BrickBlastingRecipe> SERIALIZER = new CookingRecipeSerializer<>(BrickBlastingRecipe::new, 100);
+    public static final SimpleCookingSerializer<BrickBlastingRecipe> SERIALIZER = new SimpleCookingSerializer<>(BrickBlastingRecipe::new, 100);
     static {
         SERIALIZER.setRegistryName(RecipeTypes.BLASTING_ID);
     }
@@ -36,7 +36,7 @@ public class BrickBlastingRecipe extends AbstractCookingRecipe {
 
     @Override
     @Nonnull
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 

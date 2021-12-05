@@ -7,12 +7,12 @@ import cech12.brickfurnace.crafting.BrickBlastingRecipe;
 import cech12.brickfurnace.crafting.BrickSmeltingRecipe;
 import cech12.brickfurnace.crafting.BrickSmokingRecipe;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.village.PointOfInterestType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.core.Registry;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -45,39 +45,39 @@ public class BrickFurnaceMod {
     }
 
     @SubscribeEvent
-    public static void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+    public static void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
         RecipeTypes.BLASTING = Registry.register(Registry.RECIPE_TYPE,
                 RecipeTypes.BLASTING_ID,
-                new IRecipeType<BrickBlastingRecipe>() {});
+                new RecipeType<BrickBlastingRecipe>() {});
         ForgeRegistries.RECIPE_SERIALIZERS.register(BrickBlastingRecipe.SERIALIZER);
 
         RecipeTypes.SMELTING = Registry.register(Registry.RECIPE_TYPE,
                 RecipeTypes.SMELTING_ID,
-                new IRecipeType<BrickSmeltingRecipe>() {});
+                new RecipeType<BrickSmeltingRecipe>() {});
         ForgeRegistries.RECIPE_SERIALIZERS.register(BrickSmeltingRecipe.SERIALIZER);
 
         RecipeTypes.SMOKING = Registry.register(Registry.RECIPE_TYPE,
                 RecipeTypes.SMOKING_ID,
-                new IRecipeType<BrickSmokingRecipe>() {});
+                new RecipeType<BrickSmokingRecipe>() {});
         ForgeRegistries.RECIPE_SERIALIZERS.register(BrickSmokingRecipe.SERIALIZER);
     }
 
     @SubscribeEvent
-    public static void registerVillagerWorkstations(RegistryEvent.Register<PointOfInterestType> event) {
-        addBlockStatesToPOIType(PointOfInterestType.ARMORER, BrickFurnaceBlocks.BRICK_BLAST_FURNACE);
-        addBlockStatesToPOIType(PointOfInterestType.BUTCHER, BrickFurnaceBlocks.BRICK_SMOKER);
+    public static void registerVillagerWorkstations(RegistryEvent.Register<PoiType> event) {
+        addBlockStatesToPOIType(PoiType.ARMORER, BrickFurnaceBlocks.BRICK_BLAST_FURNACE);
+        addBlockStatesToPOIType(PoiType.BUTCHER, BrickFurnaceBlocks.BRICK_SMOKER);
     }
 
-    private static void addBlockStatesToPOIType(PointOfInterestType poiType, Block block) {
+    private static void addBlockStatesToPOIType(PoiType poiType, Block block) {
         Set<BlockState> poiTypeStates = new HashSet<>(poiType.getBlockStates());
         Set<BlockState> blockStates = new HashSet<>(block.getStateDefinition().getPossibleStates());
         poiTypeStates.addAll(blockStates);
         poiType.matchingStates = ImmutableSet.copyOf(poiTypeStates);
         try {
             //accesstransformer cannot change access of TYPE_BY_STATE - use java reflection
-            Field typeByStateField = PointOfInterestType.class.getDeclaredField("TYPE_BY_STATE");
+            Field typeByStateField = PoiType.class.getDeclaredField("TYPE_BY_STATE");
             typeByStateField.setAccessible(true);
-            Map<BlockState, PointOfInterestType> typeByState = (Map<BlockState, PointOfInterestType>) typeByStateField.get(poiType);
+            Map<BlockState, PoiType> typeByState = (Map<BlockState, PoiType>) typeByStateField.get(poiType);
             for (BlockState blockState : blockStates) {
                 typeByState.put(blockState, poiType);
             }

@@ -3,19 +3,19 @@ package cech12.brickfurnace.crafting;
 import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
 import cech12.brickfurnace.api.crafting.RecipeTypes;
 import cech12.brickfurnace.config.ServerConfig;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
-import net.minecraft.item.crafting.FurnaceRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.resources.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
 public class BrickSmeltingRecipe extends AbstractCookingRecipe {
 
-    public static final CookingRecipeSerializer<BrickSmeltingRecipe> SERIALIZER = new CookingRecipeSerializer<>(BrickSmeltingRecipe::new, 200);
+    public static final SimpleCookingSerializer<BrickSmeltingRecipe> SERIALIZER = new SimpleCookingSerializer<>(BrickSmeltingRecipe::new, 200);
     static {
         SERIALIZER.setRegistryName(RecipeTypes.SMELTING_ID);
     }
@@ -24,7 +24,7 @@ public class BrickSmeltingRecipe extends AbstractCookingRecipe {
         super(RecipeTypes.SMELTING, p_i50031_1_, p_i50031_2_, p_i50031_3_, p_i50031_4_, p_i50031_5_, p_i50031_6_);
     }
 
-    public static BrickSmeltingRecipe convert(@Nonnull FurnaceRecipe recipe) {
+    public static BrickSmeltingRecipe convert(@Nonnull SmeltingRecipe recipe) {
         return new BrickSmeltingRecipe(recipe.getId(), recipe.getGroup(), recipe.getIngredients().get(0), recipe.getResultItem(), recipe.getExperience(), (int) (recipe.getCookingTime() * ServerConfig.COOK_TIME_FACTOR.get()));
     }
 
@@ -36,7 +36,7 @@ public class BrickSmeltingRecipe extends AbstractCookingRecipe {
 
     @Override
     @Nonnull
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
 

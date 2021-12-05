@@ -1,28 +1,39 @@
 package cech12.brickfurnace.block;
 
+import cech12.brickfurnace.api.tileentity.BrickFurnaceTileEntities;
+import cech12.brickfurnace.tileentity.AbstractBrickFurnaceTileEntity;
 import cech12.brickfurnace.tileentity.BrickFurnaceTileEntity;
-import net.minecraft.block.FurnaceBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.world.level.block.FurnaceBlock;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-import net.minecraft.block.AbstractBlock;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class BrickFurnaceBlock extends FurnaceBlock {
 
-    public BrickFurnaceBlock(AbstractBlock.Properties builder) {
+    public BrickFurnaceBlock(BlockBehaviour.Properties builder) {
         super(builder);
     }
 
     @Override
-    public TileEntity newBlockEntity(@Nonnull IBlockReader worldIn) {
-        return new BrickFurnaceTileEntity();
+    public BlockEntity newBlockEntity(@Nonnull BlockPos blockPos, @Nonnull BlockState blockState) {
+        return new BrickFurnaceTileEntity(blockPos, blockState);
+    }
+
+    @Override
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockEntityType<T> entityType) {
+        return createTickerHelper(entityType, (BlockEntityType<AbstractBrickFurnaceTileEntity>) BrickFurnaceTileEntities.BRICK_FURNACE, AbstractBrickFurnaceTileEntity::tick);
     }
 
     /**
@@ -30,10 +41,10 @@ public class BrickFurnaceBlock extends FurnaceBlock {
      * inside AbstractFurnaceBlock.
      */
     @Override
-    protected void openContainer(World worldIn, @Nonnull BlockPos pos, @Nonnull PlayerEntity player) {
-        TileEntity tileentity = worldIn.getBlockEntity(pos);
+    protected void openContainer(Level worldIn, @Nonnull BlockPos pos, @Nonnull Player player) {
+        BlockEntity tileentity = worldIn.getBlockEntity(pos);
         if (tileentity instanceof BrickFurnaceTileEntity) {
-            player.openMenu((INamedContainerProvider)tileentity);
+            player.openMenu((MenuProvider)tileentity);
             player.awardStat(Stats.INTERACT_WITH_FURNACE);
         }
 

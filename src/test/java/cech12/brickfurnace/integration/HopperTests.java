@@ -1,5 +1,5 @@
 package cech12.brickfurnace.integration;
-
+/*
 import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
 import cech12.brickfurnace.tileentity.AbstractBrickFurnaceTileEntity;
 import com.alcatrazescapee.mcjunitlib.framework.IntegrationTest;
@@ -164,3 +164,4 @@ public class HopperTests {
     }
 
 }
+ */
