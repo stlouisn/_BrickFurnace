@@ -2,31 +2,33 @@ package cech12.brickfurnace.tileentity;
 
 import cech12.brickfurnace.api.crafting.RecipeTypes;
 import cech12.brickfurnace.api.tileentity.BrickFurnaceTileEntities;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.SmokerContainer;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.SmokerMenu;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nonnull;
 
 public class BrickSmokerTileEntity extends AbstractBrickFurnaceTileEntity {
 
-    public BrickSmokerTileEntity() {
-        super(BrickFurnaceTileEntities.BRICK_SMOKER, RecipeTypes.SMOKING, IRecipeType.SMOKING);
+    public BrickSmokerTileEntity(BlockPos blockPos, BlockState blockState) {
+        super(BrickFurnaceTileEntities.BRICK_SMOKER, blockPos, blockState, RecipeTypes.SMOKING, RecipeType.SMOKING);
     }
 
     @Override
     @Nonnull
-    protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("block.brickfurnace.brick_smoker");
+    protected Component getDefaultName() {
+        return new TranslatableComponent("block.brickfurnace.brick_smoker");
     }
 
     @Override
     @Nonnull
-    protected Container createMenu(int id, @Nonnull PlayerInventory player) {
-        return new SmokerContainer(id, player, this, this.dataAccess);
+    protected AbstractContainerMenu createMenu(int id, @Nonnull Inventory player) {
+        return new SmokerMenu(id, player, this, this.dataAccess);
     }
 
 }

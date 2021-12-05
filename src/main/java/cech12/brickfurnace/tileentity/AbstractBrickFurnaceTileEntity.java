@@ -1,28 +1,35 @@
 package cech12.brickfurnace.tileentity;
 
 import cech12.brickfurnace.config.ServerConfig;
-import net.minecraft.block.AbstractFurnaceBlock;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTileEntity {
+public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceBlockEntity {
 
-    protected final IRecipeType<? extends AbstractCookingRecipe> specificRecipeType;
+    protected final RecipeType<? extends AbstractCookingRecipe> specificRecipeType;
+    protected final RecipeType<? extends AbstractCookingRecipe> vanillaRecipeType;
 
-    public AbstractBrickFurnaceTileEntity(TileEntityType<?> tileTypeIn,
-                                          IRecipeType<? extends AbstractCookingRecipe> specificRecipeTypeIn,
-                                          IRecipeType<? extends AbstractCookingRecipe> vanillaRecipeTypeIn) {
-        super(tileTypeIn, vanillaRecipeTypeIn);
+    public AbstractBrickFurnaceTileEntity(BlockEntityType<?> tileTypeIn,
+                                          BlockPos blockPos,
+                                          BlockState blockState,
+                                          RecipeType<? extends AbstractCookingRecipe> specificRecipeTypeIn,
+                                          RecipeType<? extends AbstractCookingRecipe> vanillaRecipeTypeIn) {
+        super(tileTypeIn, blockPos, blockState, vanillaRecipeTypeIn);
         this.specificRecipeType = specificRecipeTypeIn;
+        this.vanillaRecipeType = vanillaRecipeTypeIn;
     }
 
     /* FOLLOWING Code helps the copied code below. */
@@ -45,63 +52,61 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
         return this.dataAccess.get(BURN_TIME) > 0; //changed because of private variable
     }
 
-    @Override
-    public void tick() {
-        boolean wasBurning = this.isBurning();
+    public static void tick(Level level, BlockPos pos, BlockState state, AbstractBrickFurnaceTileEntity entity) {
+        boolean wasBurning = entity.isBurning();
         boolean dirty = false;
-        if (this.isBurning()) {
-            this.dataAccess.set(BURN_TIME, this.dataAccess.get(BURN_TIME) - 1); //changed because of private variable
+        if (entity.isBurning()) {
+            entity.dataAccess.set(BURN_TIME, entity.dataAccess.get(BURN_TIME) - 1); //changed because of private variable
         }
 
-        if (this.level != null && !this.level.isClientSide) {
-            ItemStack fuel = this.items.get(FUEL);
-            if (this.isBurning() || !fuel.isEmpty() && !this.items.get(INPUT).isEmpty()) {
-                AbstractCookingRecipe irecipe = getRecipe();
-                boolean valid = this.canBurn(irecipe);
-                if (!this.isBurning() && valid) {
-                    this.dataAccess.set(BURN_TIME, this.getBurnDuration(fuel)); //changed because of private variable
-                    this.dataAccess.set(RECIPES_USED, this.dataAccess.get(BURN_TIME)); //changed because of private variable
-                    if (this.isBurning()) {
+        if (level != null && !level.isClientSide) {
+            ItemStack fuel = entity.items.get(FUEL);
+            if (entity.isBurning() || !fuel.isEmpty() && !entity.items.get(INPUT).isEmpty()) {
+                AbstractCookingRecipe irecipe = entity.getRecipe();
+                boolean valid = entity.canBurn(irecipe);
+                if (!entity.isBurning() && valid) {
+                    entity.dataAccess.set(BURN_TIME, entity.getBurnDuration(fuel)); //changed because of private variable
+                    entity.dataAccess.set(RECIPES_USED, entity.dataAccess.get(BURN_TIME)); //changed because of private variable
+                    if (entity.isBurning()) {
                         dirty = true;
-                        if (fuel.hasContainerItem()) this.items.set(1, fuel.getContainerItem());
+                        if (fuel.hasContainerItem()) entity.items.set(1, fuel.getContainerItem());
                         else if (!fuel.isEmpty()) {
                             fuel.shrink(1);
                             if (fuel.isEmpty()) {
-                                this.items.set(1, fuel.getContainerItem());
+                                entity.items.set(1, fuel.getContainerItem());
                             }
                         }
                     }
                 }
 
-                if (this.isBurning() && valid) {
-                    this.dataAccess.set(COOK_TIME, this.dataAccess.get(COOK_TIME) + 1); //changed because of private variable
-                    if (this.dataAccess.get(COOK_TIME) == this.dataAccess.get(COOK_TIME_TOTAL)) { //changed because of private variable
-                        this.dataAccess.set(COOK_TIME, 0); //changed because of private variable
-                        this.dataAccess.set(COOK_TIME_TOTAL, this.getTotalCookTime()); //changed because of private variable
-                        this.smeltItem(irecipe);
+                if (entity.isBurning() && valid) {
+                    entity.dataAccess.set(COOK_TIME, entity.dataAccess.get(COOK_TIME) + 1); //changed because of private variable
+                    if (entity.dataAccess.get(COOK_TIME) == entity.dataAccess.get(COOK_TIME_TOTAL)) { //changed because of private variable
+                        entity.dataAccess.set(COOK_TIME, 0); //changed because of private variable
+                        entity.dataAccess.set(COOK_TIME_TOTAL, entity.getTotalCookTime()); //changed because of private variable
+                        entity.smeltItem(irecipe);
                         dirty = true;
                     }
                 } else {
-                    this.dataAccess.set(COOK_TIME, 0); //changed because of private variable
+                    entity.dataAccess.set(COOK_TIME, 0); //changed because of private variable
                 }
-            } else if (!this.isBurning() && this.dataAccess.get(COOK_TIME) > 0) { //changed because of private variable
-                this.dataAccess.set(COOK_TIME, MathHelper.clamp(this.dataAccess.get(COOK_TIME) - 2, 0, this.dataAccess.get(COOK_TIME_TOTAL))); //changed because of private variable
+            } else if (!entity.isBurning() && entity.dataAccess.get(COOK_TIME) > 0) { //changed because of private variable
+                entity.dataAccess.set(COOK_TIME, Mth.clamp(entity.dataAccess.get(COOK_TIME) - 2, 0, entity.dataAccess.get(COOK_TIME_TOTAL))); //changed because of private variable
             }
 
-            if (wasBurning != this.isBurning()) {
+            if (wasBurning != entity.isBurning()) {
                 dirty = true;
-                this.level.setBlock(this.worldPosition, this.level.getBlockState(this.worldPosition).setValue(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                level.setBlock(pos, state.setValue(AbstractFurnaceBlock.LIT, entity.isBurning()), 3);
             }
         }
 
         if (dirty) {
-            this.setChanged();
+            entity.setChanged();
         }
 
     }
 
-    @Override
-    protected boolean canBurn(@Nullable IRecipe<?> recipe) {
+    private boolean canBurn(@Nullable Recipe<?> recipe) {
         if (!this.items.get(0).isEmpty() && recipe != null) {
             ItemStack recipeOutput = recipe.getResultItem();
             if (!recipeOutput.isEmpty()) {
@@ -114,7 +119,7 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
         return false;
     }
 
-    private void smeltItem(@Nullable IRecipe<?> recipe) {
+    private void smeltItem(@Nullable Recipe<?> recipe) {
         if (recipe != null && this.canBurn(recipe)) {
             ItemStack itemstack = this.items.get(0);
             ItemStack itemstack1 = recipe.getResultItem();
@@ -137,8 +142,7 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
         }
     }
 
-    @Override
-    protected int getTotalCookTime() {
+    private int getTotalCookTime() {
         AbstractCookingRecipe rec = getRecipe();
         if (rec == null) {
             return 200;
@@ -160,7 +164,7 @@ public abstract class AbstractBrickFurnaceTileEntity extends AbstractFurnaceTile
             if (this.level != null) {
                 rec = this.level.getRecipeManager().getRecipeFor(this.specificRecipeType, this, this.level).orElse(null);
                 if (rec == null && ServerConfig.VANILLA_RECIPES_ENABLED.get()) {
-                    rec = this.level.getRecipeManager().getRecipesFor(this.recipeType, this, this.level)
+                    rec = this.level.getRecipeManager().getRecipesFor(this.vanillaRecipeType, this, this.level)
                             .stream().filter(abstractCookingRecipe -> ServerConfig.isRecipeNotBlacklisted(abstractCookingRecipe.getId())).findFirst().orElse(null);
                 }
             }
