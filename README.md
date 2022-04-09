@@ -1,9 +1,8 @@
 # Brick Furnace 
 
-[![Curseforge](http://cf.way2muchnoise.eu/full_brick-furnace_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace)
-[![Curseforge](http://cf.way2muchnoise.eu/versions/For%20MC_brick-furnace_all.svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace/files)
-[![Build](https://github.com/cech12/BrickFurnace/actions/workflows/build.yml/badge.svg)](https://github.com/cech12/BrickFurnace/actions/workflows/build.yml)
-[![Test](https://github.com/cech12/BrickFurnace/actions/workflows/test.yml/badge.svg)](https://github.com/cech12/BrickFurnace/actions/workflows/test.yml)
+[![Curseforge](http://cf.way2muchnoise.eu/full_brick-furnace_downloads(0D0D0D-F16436-fff-010101-fff).svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace)
+[![Curseforge](http://cf.way2muchnoise.eu/versions/For%20MC_brick-furnace_all(0D0D0D-F16436-fff-010101).svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace/files)
+[![CI/CD](https://github.com/cech12/BrickFurnace/actions/workflows/cicd-workflow.yml/badge.svg)](https://github.com/cech12/BrickFurnace/actions/workflows/cicd-workflow.yml)
 [![License](https://img.shields.io/github/license/cech12/BrickFurnace)](http://opensource.org/licenses/MIT)
 [![](https://img.shields.io/discord/752506676719910963.svg?style=flat&color=informational&logo=discord&label=Discord)](https://discord.gg/gRUFH5t)
 
