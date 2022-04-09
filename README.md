@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/cech12/BrickFurnace)](http://opensource.org/licenses/MIT)
 [![](https://img.shields.io/discord/752506676719910963.svg?style=flat&color=informational&logo=discord&label=Discord)](https://discord.gg/gRUFH5t)
 
-This is a **Minecraft Forge** mod that adds **Brick Furnaces** to the game.
+This **Minecraft Forge** mod adds **Brick Furnaces** to the game.
 
 ![All Furnaces](material/all_furnaces.png)
 
