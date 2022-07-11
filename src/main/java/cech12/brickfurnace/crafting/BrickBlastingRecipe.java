@@ -1,7 +1,7 @@
 package cech12.brickfurnace.crafting;
 
-import cech12.brickfurnace.api.block.BrickFurnaceBlocks;
-import cech12.brickfurnace.api.crafting.RecipeTypes;
+import cech12.brickfurnace.init.ModBlocks;
+import cech12.brickfurnace.init.ModRecipeTypes;
 import cech12.brickfurnace.config.ServerConfig;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -16,12 +16,9 @@ import javax.annotation.Nonnull;
 public class BrickBlastingRecipe extends AbstractCookingRecipe {
 
     public static final SimpleCookingSerializer<BrickBlastingRecipe> SERIALIZER = new SimpleCookingSerializer<>(BrickBlastingRecipe::new, 100);
-    static {
-        SERIALIZER.setRegistryName(RecipeTypes.BLASTING_ID);
-    }
 
     public BrickBlastingRecipe(ResourceLocation p_i50031_1_, String p_i50031_2_, Ingredient p_i50031_3_, ItemStack p_i50031_4_, float p_i50031_5_, int p_i50031_6_) {
-        super(RecipeTypes.BLASTING, p_i50031_1_, p_i50031_2_, p_i50031_3_, p_i50031_4_, p_i50031_5_, p_i50031_6_);
+        super(ModRecipeTypes.BLASTING.get(), p_i50031_1_, p_i50031_2_, p_i50031_3_, p_i50031_4_, p_i50031_5_, p_i50031_6_);
     }
 
     public static BrickBlastingRecipe convert(@Nonnull BlastingRecipe recipe) {
@@ -31,7 +28,7 @@ public class BrickBlastingRecipe extends AbstractCookingRecipe {
     @Override
     @Nonnull
     public ItemStack getToastSymbol() {
-        return new ItemStack(BrickFurnaceBlocks.BRICK_BLAST_FURNACE);
+        return new ItemStack(ModBlocks.BRICK_BLAST_FURNACE.get());
     }
 
     @Override

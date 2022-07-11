@@ -1,8 +1,8 @@
 package cech12.brickfurnace.block;
 
-import cech12.brickfurnace.api.blockentity.BrickFurnaceBlockEntities;
 import cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
 import cech12.brickfurnace.blockentity.BrickBlastFurnaceBlockEntity;
+import cech12.brickfurnace.init.ModBlockEntities;
 import net.minecraft.world.level.block.BlastFurnaceBlock;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.MenuProvider;
@@ -33,7 +33,7 @@ public class BrickBlastFurnaceBlock extends BlastFurnaceBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockEntityType<T> entityType) {
-        return createTickerHelper(entityType, (BlockEntityType<AbstractBrickFurnaceBlockEntity>) BrickFurnaceBlockEntities.BRICK_BLAST_FURNACE, AbstractBrickFurnaceBlockEntity::tick);
+        return createTickerHelper(entityType, (BlockEntityType<AbstractBrickFurnaceBlockEntity>) ModBlockEntities.BRICK_BLAST_FURNACE.get(), AbstractBrickFurnaceBlockEntity::tick);
     }
 
     /**
