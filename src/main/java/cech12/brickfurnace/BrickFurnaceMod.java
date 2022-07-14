@@ -1,6 +1,6 @@
 package cech12.brickfurnace;
 
-import cech12.brickfurnace.init.ModBlockEntities;
+import cech12.brickfurnace.init.ModBlockEntityTypes;
 import cech12.brickfurnace.init.ModBlocks;
 import cech12.brickfurnace.init.ModItems;
 import cech12.brickfurnace.init.ModPoiTypes;
@@ -24,7 +24,7 @@ public class BrickFurnaceMod {
     public BrickFurnaceMod() {
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModBlocks.BLOCKS.register(eventBus);
-        ModBlockEntities.BLOCK_ENTITIES.register(eventBus);
+        ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(eventBus);
         ModItems.ITEMS.register(eventBus);
         ModRecipeTypes.RECIPE_TYPES.register(eventBus);
         ModRecipeTypes.RECIPE_SERIALIZERS.register(eventBus);

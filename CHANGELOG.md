@@ -3,9 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.19-1.8.1.0] - 2022-07-14
+### Changed
+- Update mod to Forge 1.19-41.0.96 to fix startup crashes since Forge 1.19-41.0.94
+
 ## [1.19-1.8.0.0] - 2022-07-12
 ### Changed
-- Update mod to Forge 1.19-40.0.63
+- Update mod to Forge 1.19-41.0.63
 
 ## [1.18.2-1.7.0.0] - 2022-04-30
 ### Changed

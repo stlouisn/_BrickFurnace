@@ -1,6 +1,6 @@
 package cech12.brickfurnace.blockentity;
 
-import cech12.brickfurnace.init.ModBlockEntities;
+import cech12.brickfurnace.init.ModBlockEntityTypes;
 import cech12.brickfurnace.init.ModRecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 public class BrickBlastFurnaceBlockEntity extends AbstractBrickFurnaceBlockEntity {
 
     public BrickBlastFurnaceBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(ModBlockEntities.BRICK_BLAST_FURNACE.get(), blockPos, blockState, ModRecipeTypes.BLASTING.get(), RecipeType.BLASTING);
+        super(ModBlockEntityTypes.BRICK_BLAST_FURNACE.get(), blockPos, blockState, ModRecipeTypes.BLASTING.get(), RecipeType.BLASTING);
     }
 
     @Override

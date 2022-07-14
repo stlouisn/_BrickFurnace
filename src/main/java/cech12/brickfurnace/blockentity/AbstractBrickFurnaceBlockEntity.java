@@ -69,11 +69,11 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
                     entity.dataAccess.set(RECIPES_USED, entity.dataAccess.get(BURN_TIME)); //changed because of private variable
                     if (entity.isBurning()) {
                         dirty = true;
-                        if (fuel.hasContainerItem()) entity.items.set(1, fuel.getContainerItem());
+                        if (fuel.hasCraftingRemainingItem()) entity.items.set(1, fuel.getCraftingRemainingItem());
                         else if (!fuel.isEmpty()) {
                             fuel.shrink(1);
                             if (fuel.isEmpty()) {
-                                entity.items.set(1, fuel.getContainerItem());
+                                entity.items.set(1, fuel.getCraftingRemainingItem());
                             }
                         }
                     }

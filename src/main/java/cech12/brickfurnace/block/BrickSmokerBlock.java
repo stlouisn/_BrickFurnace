@@ -2,7 +2,7 @@ package cech12.brickfurnace.block;
 
 import cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
 import cech12.brickfurnace.blockentity.BrickSmokerBlockEntity;
-import cech12.brickfurnace.init.ModBlockEntities;
+import cech12.brickfurnace.init.ModBlockEntityTypes;
 import net.minecraft.world.level.block.SmokerBlock;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.MenuProvider;
@@ -33,7 +33,7 @@ public class BrickSmokerBlock extends SmokerBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockEntityType<T> entityType) {
-        return createTickerHelper(entityType, (BlockEntityType<AbstractBrickFurnaceBlockEntity>) ModBlockEntities.BRICK_SMOKER.get(), AbstractBrickFurnaceBlockEntity::tick);
+        return createTickerHelper(entityType, (BlockEntityType<AbstractBrickFurnaceBlockEntity>) ModBlockEntityTypes.BRICK_SMOKER.get(), AbstractBrickFurnaceBlockEntity::tick);
     }
 
     /**
