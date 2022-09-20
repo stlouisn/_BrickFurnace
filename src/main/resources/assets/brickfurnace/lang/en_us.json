@@ -1,5 +1,8 @@
 {
   "block.brickfurnace.brick_blast_furnace": "Brick Blast Furnace",
   "block.brickfurnace.brick_furnace": "Brick Furnace",
-  "block.brickfurnace.brick_smoker": "Brick Smoker"
+  "block.brickfurnace.brick_smoker": "Brick Smoker",
+
+  "top.brickfurnace.fuel": "Fuel",
+  "top.brickfurnace.n_ticks": "%d ticks"
 }

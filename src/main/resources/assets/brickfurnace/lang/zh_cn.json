@@ -1,5 +1,8 @@
 {
   "block.brickfurnace.brick_blast_furnace": "砖高炉",
   "block.brickfurnace.brick_furnace": "砖熔炉",
-  "block.brickfurnace.brick_smoker": "砖烟熏炉"
+  "block.brickfurnace.brick_smoker": "砖烟熏炉",
+
+  "top.brickfurnace.fuel": "Fuel",
+  "top.brickfurnace.n_ticks": "%d ticks"
 }
