@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[41,)"
-issueTrackerURL="https://github.com/cech12/BrickShears/issues"
+issueTrackerURL="https://github.com/cech12/BrickFurnace/issues"
 license="The MIT License (MIT)"
 [[mods]]
     modId="brickfurnace"
