@@ -2,9 +2,11 @@ buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
         mavenCentral()
+        maven {url 'https://repo.spongepowered.org/repository/maven-public/'} //only to use immersive engineering
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT' //only to use immersive engineering
     }
 }
 
@@ -16,6 +18,7 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin' //only to use immersive engineering
 
 version = "${minecraft_version}-${mod_version}"
 group = "cech12.${mod_id}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -119,6 +122,11 @@ repositories {
     maven { // TOP
         url "https://maven.k-4u.nl"
     }
+    maven {
+        // Immersive Engineering
+        name = "Blamejared Maven"
+        url "https://maven.blamejared.com"
+    }
 }
 
 dependencies {
@@ -134,6 +142,10 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${project.minecraft_version}-forge:${project.jei_version}")
 
     implementation fg.deobf("mcjty.theoneprobe:theoneprobe:$top_version") {transitive = false}
+
+    //Immersive Engineering
+    runtimeOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${project.immersive_engineering_version}")
+    compileOnly fg.deobf("blusunrize.immersiveengineering:ImmersiveEngineering:${project.immersive_engineering_version}:api")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

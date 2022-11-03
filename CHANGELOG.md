@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.19.2-1.8.3.0] - 2022-11-04
+### Added
+- Support for External Heater of Immersive Engineering #16
+
+### Changed
+- Update mod to Forge 1.19.2-43.1.2
+
 ## [1.19-1.8.2.0] - 2022-09-20
 ### Added
 - The One Probe support - Show cooking time of Brick Furnaces

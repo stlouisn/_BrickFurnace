@@ -2,6 +2,7 @@ package cech12.brickfurnace.blockentity;
 
 import cech12.brickfurnace.config.ServerConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -152,7 +153,7 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
         return (int) (rec.getCookingTime() * ServerConfig.COOK_TIME_FACTOR.get());
     }
 
-    protected AbstractCookingRecipe getRecipe() {
+    public AbstractCookingRecipe getRecipe() {
         ItemStack input = this.getItem(INPUT);
         if (input.isEmpty() || input == failedMatch) {
             return null;
@@ -175,6 +176,10 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
             }
             return curRecipe = rec;
         }
+    }
+
+    public ContainerData getContainerData() {
+        return this.dataAccess;
     }
 
 }
