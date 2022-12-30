@@ -7,7 +7,10 @@ import cech12.brickfurnace.init.ModItems;
 import cech12.brickfurnace.init.ModPoiTypes;
 import cech12.brickfurnace.init.ModRecipeTypes;
 import cech12.brickfurnace.config.ServerConfig;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -19,6 +22,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import static cech12.brickfurnace.BrickFurnaceMod.MOD_ID;
 
 @Mod(MOD_ID)
+@Mod.EventBusSubscriber(modid= MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class BrickFurnaceMod {
 
     public static final String MOD_ID = "brickfurnace";
@@ -37,6 +41,15 @@ public class BrickFurnaceMod {
         //The One Probe registration.
         if (ModList.get().isLoaded("theoneprobe") && !ModList.get().isLoaded("topaddons")) {
             TOPCompat.register();
+        }
+    }
+
+    @SubscribeEvent
+    public static void addItemsToTabs(CreativeModeTabEvent.BuildContents event) {
+        if (event.getTab() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ModItems.BRICK_FURNACE);
+            event.accept(ModItems.BRICK_BLAST_FURNACE);
+            event.accept(ModItems.BRICK_SMOKER);
         }
     }
 

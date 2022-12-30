@@ -1,5 +1,6 @@
 package cech12.brickfurnace.jei;
 
+/*
 import cech12.brickfurnace.BrickFurnaceMod;
 import cech12.brickfurnace.init.ModBlocks;
 import cech12.brickfurnace.init.ModRecipeTypes;
@@ -85,3 +86,4 @@ public class BrickFurnaceJEIPlugin implements IModPlugin {
     }
 
 }
+ */

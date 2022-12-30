@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "###",
     "# #",
@@ -7,7 +8,7 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:brick"
+      "tag": "forge:ingots/brick"
     }
   },
   "result": {

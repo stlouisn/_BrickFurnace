@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[43,)"
+loaderVersion="[44,)"
 issueTrackerURL="https://github.com/cech12/BrickFurnace/issues"
 license="The MIT License (MIT)"
 [[mods]]
@@ -15,13 +15,13 @@ license="The MIT License (MIT)"
 [[dependencies.brickfurnace]]
     modId="forge"
     mandatory=true
-    versionRange="[43.1.2,)"
+    versionRange="[44.0.41,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.brickfurnace]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.2,1.20)"
+    versionRange="[1.19.3,1.20)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.brickfurnace]]
@@ -33,7 +33,7 @@ license="The MIT License (MIT)"
 [[dependencies.brickfurnace]]
    modId="theoneprobe"
    mandatory=false
-   versionRange="[1.19-6.2.0,)"
+   versionRange="[1.19.3-7.0.0,)"
    ordering="NONE"
    side="BOTH"
 [[dependencies.brickfurnace]]

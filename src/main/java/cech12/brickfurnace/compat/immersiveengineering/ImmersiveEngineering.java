@@ -1,5 +1,6 @@
 package cech12.brickfurnace.compat.immersiveengineering;
 
+/*
 import blusunrize.immersiveengineering.api.tool.ExternalHeaterHandler;
 import blusunrize.immersiveengineering.api.utils.CapabilityUtils;
 import cech12.brickfurnace.BrickFurnaceMod;
@@ -42,3 +43,4 @@ public class ImmersiveEngineering {
     }
 
 }
+ */
