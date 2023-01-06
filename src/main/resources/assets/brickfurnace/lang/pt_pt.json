@@ -1,0 +1,8 @@
+{
+  "block.brickfurnace.brick_blast_furnace": "Fornalha Potente de Tijolos",
+  "block.brickfurnace.brick_furnace": "Fornalha de Tijolos",
+  "block.brickfurnace.brick_smoker": "Defumador de Tijolos",
+
+  "top.brickfurnace.fuel": "Combustível",
+  "top.brickfurnace.n_ticks": "%d ticks"
+}
