@@ -27,7 +27,7 @@ license="The MIT License (MIT)"
 [[dependencies.brickfurnace]]
    modId="jei"
    mandatory=false
-   versionRange="[11.2.0.246,)"
+   versionRange="[12.0.2.2,)"
    ordering="NONE"
    side="BOTH"
 [[dependencies.brickfurnace]]
