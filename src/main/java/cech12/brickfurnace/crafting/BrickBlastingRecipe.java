@@ -3,6 +3,7 @@ package cech12.brickfurnace.crafting;
 import cech12.brickfurnace.init.ModBlocks;
 import cech12.brickfurnace.init.ModRecipeTypes;
 import cech12.brickfurnace.config.ServerConfig;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.BlastingRecipe;
@@ -22,8 +23,8 @@ public class BrickBlastingRecipe extends AbstractCookingRecipe {
         super(ModRecipeTypes.BLASTING.get(), p_i50031_1_, p_i50031_2_, category, p_i50031_3_, p_i50031_4_, p_i50031_5_, p_i50031_6_);
     }
 
-    public static BrickBlastingRecipe convert(@Nonnull BlastingRecipe recipe) {
-        return new BrickBlastingRecipe(recipe.getId(), recipe.getGroup(), recipe.category(), recipe.getIngredients().get(0), recipe.getResultItem(), recipe.getExperience(), (int) (recipe.getCookingTime() * ServerConfig.COOK_TIME_FACTOR.get()));
+    public static BrickBlastingRecipe convert(@Nonnull BlastingRecipe recipe, RegistryAccess registryAccess) {
+        return new BrickBlastingRecipe(recipe.getId(), recipe.getGroup(), recipe.category(), recipe.getIngredients().get(0), recipe.getResultItem(registryAccess), recipe.getExperience(), (int) (recipe.getCookingTime() * ServerConfig.COOK_TIME_FACTOR.get()));
     }
 
     @Override

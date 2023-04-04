@@ -110,7 +110,7 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
 
     private boolean canBurn(@Nullable Recipe<?> recipe) {
         if (!this.items.get(0).isEmpty() && recipe != null) {
-            ItemStack recipeOutput = recipe.getResultItem();
+            ItemStack recipeOutput = recipe.getResultItem(this.getLevel().registryAccess());
             if (!recipeOutput.isEmpty()) {
                 ItemStack output = this.items.get(OUTPUT);
                 if (output.isEmpty()) return true;
@@ -124,7 +124,7 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
     private void smeltItem(@Nullable Recipe<?> recipe) {
         if (recipe != null && this.canBurn(recipe)) {
             ItemStack itemstack = this.items.get(0);
-            ItemStack itemstack1 = recipe.getResultItem();
+            ItemStack itemstack1 = recipe.getResultItem(this.getLevel().registryAccess());
             ItemStack itemstack2 = this.items.get(2);
             if (itemstack2.isEmpty()) {
                 this.items.set(2, itemstack1.copy());

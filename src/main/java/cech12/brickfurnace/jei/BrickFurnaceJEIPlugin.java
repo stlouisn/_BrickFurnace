@@ -60,15 +60,15 @@ public class BrickFurnaceJEIPlugin implements IModPlugin {
             if (ServerConfig.VANILLA_RECIPES_ENABLED.get()) {
                 registration.addRecipes(smeltingRecipeType.getRecipeType(), manager.getAllRecipesFor(RecipeType.SMELTING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
-                        .map(BrickSmeltingRecipe::convert)
+                        .map(recipe -> BrickSmeltingRecipe.convert(recipe, player.getLevel().registryAccess()))
                         .collect(Collectors.toList()));
                 registration.addRecipes(smokingRecipeType.getRecipeType(), manager.getAllRecipesFor(RecipeType.SMOKING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
-                        .map(BrickSmokingRecipe::convert)
+                        .map(recipe -> BrickSmokingRecipe.convert(recipe, player.getLevel().registryAccess()))
                         .collect(Collectors.toList()));
                 registration.addRecipes(blastingRecipeType.getRecipeType(), manager.getAllRecipesFor(RecipeType.BLASTING).stream()
                         .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
-                        .map(BrickBlastingRecipe::convert)
+                        .map(recipe -> BrickBlastingRecipe.convert(recipe, player.getLevel().registryAccess()))
                         .collect(Collectors.toList()));
             }
         }

@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.19.4-1.10.0.0] - 2023-04-04
+### Changed
+- Update mod to Forge 1.19.4-45.0.40
+- Update compat with The One Probe to 1.19.4-8.0.0
+- Update compat with JEI to 1.19.4-13.0.0.1
+- Temporary deactivation of Immersive Engineering support until it is ported to 1.19.4
+
 ## [1.19.3-1.9.3.0] - 2023-02-06
 ### Changed
 - update mod to Forge 1.19.3-44.1.5
