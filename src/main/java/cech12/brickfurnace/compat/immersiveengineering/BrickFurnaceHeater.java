@@ -1,8 +1,9 @@
 package cech12.brickfurnace.compat.immersiveengineering;
-/*
+
 import blusunrize.immersiveengineering.api.tool.ExternalHeaterHandler;
 import cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
 import cech12.brickfurnace.blockentity.BrickFurnaceBlockEntity;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -20,12 +21,12 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
         this.furnace = furnace;
     }
 
-    boolean canCook() {
+    boolean canCook(RegistryAccess registryAccess) {
         ItemStack input = furnace.getItem(AbstractBrickFurnaceBlockEntity.INPUT);
         if (input.isEmpty()) return false;
         AbstractCookingRecipe recipe = furnace.getRecipe();
         if (recipe == null) return false;
-        ItemStack outStack = recipe.getResultItem();
+        ItemStack outStack = recipe.getResultItem(registryAccess);
         if (outStack.isEmpty()) return false;
         ItemStack existingOutput = furnace.getItem(2);
         if (existingOutput.isEmpty()) return true;
@@ -39,7 +40,7 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
         long now = furnace.getLevel().getGameTime();
         if (now < blockedUntilGameTime) return 0;
         int energyConsumed = 0;
-        boolean canCook = canCook();
+        boolean canCook = canCook(furnace.getLevel().registryAccess());
         if (canCook || redstone) {
             ContainerData furnaceData = furnace.getContainerData();
             int burnTime = furnaceData.get(DATA_LIT_TIME);
@@ -81,4 +82,3 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
         }
     }
 }
- */

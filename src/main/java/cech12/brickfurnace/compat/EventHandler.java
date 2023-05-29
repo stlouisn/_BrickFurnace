@@ -1,6 +1,6 @@
 package cech12.brickfurnace.compat;
 
-//import cech12.brickfurnace.compat.immersiveengineering.ImmersiveEngineering;
+import cech12.brickfurnace.compat.immersiveengineering.ImmersiveEngineering;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,9 +14,9 @@ public class EventHandler {
 
     @SubscribeEvent
     public static void onCapabilitiesAttachBlockEntity(AttachCapabilitiesEvent<BlockEntity> event) {
-        //if (ModList.get().isLoaded("immersiveengineering")) {
-        //    ImmersiveEngineering.onCapabilitiesAttachBlockEntity(event);
-        //}
+        if (ModList.get().isLoaded("immersiveengineering")) {
+            ImmersiveEngineering.onCapabilitiesAttachBlockEntity(event);
+        }
     }
 
 }
