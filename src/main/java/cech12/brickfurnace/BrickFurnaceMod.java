@@ -8,7 +8,7 @@ import cech12.brickfurnace.init.ModPoiTypes;
 import cech12.brickfurnace.init.ModRecipeTypes;
 import cech12.brickfurnace.config.ServerConfig;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -45,8 +45,8 @@ public class BrickFurnaceMod {
     }
 
     @SubscribeEvent
-    public static void addItemsToTabs(CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+    public static void addItemsToTabs(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(ModItems.BRICK_FURNACE);
             event.accept(ModItems.BRICK_BLAST_FURNACE);
             event.accept(ModItems.BRICK_SMOKER);

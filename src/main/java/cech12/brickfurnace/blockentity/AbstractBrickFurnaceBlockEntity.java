@@ -114,7 +114,7 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
             if (!recipeOutput.isEmpty()) {
                 ItemStack output = this.items.get(OUTPUT);
                 if (output.isEmpty()) return true;
-                else if (!output.sameItem(recipeOutput)) return false;
+                else if (!ItemStack.isSameItem(output, recipeOutput)) return false;
                 else return output.getCount() + recipeOutput.getCount() <= output.getMaxStackSize();
             }
         }
