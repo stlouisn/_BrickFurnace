@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.20.1-2.1.0.0] - 2023-08-03
+### Changed
+- Changed Forge to NeoForge 1.20.1-47.1.54 (compatible with Forge 47.1.0) 
+- Updated compat with JEI to 1.20.1-15.2.0.23
+- Re-added compat with Immersive Engineering 1.20.1-9.4.0 #22
+
 ## [1.20.1-2.0.0.0] - 2023-06-19
 ### Changed
 - Update mod to Forge 1.20.1-47.0.1 #21

@@ -1,5 +1,5 @@
 package cech12.brickfurnace.compat.immersiveengineering;
-/*
+
 import blusunrize.immersiveengineering.api.tool.ExternalHeaterHandler;
 import cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
 import cech12.brickfurnace.blockentity.BrickFurnaceBlockEntity;
@@ -30,7 +30,7 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
         if (outStack.isEmpty()) return false;
         ItemStack existingOutput = furnace.getItem(2);
         if (existingOutput.isEmpty()) return true;
-        if (!existingOutput.sameItem(outStack)) return false;
+        if (!ItemStack.isSameItem(existingOutput, outStack)) return false;
         int stackSize = existingOutput.getCount() + outStack.getCount();
         return stackSize <= furnace.getMaxStackSize() && stackSize <= outStack.getMaxStackSize();
     }
@@ -82,4 +82,3 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
         }
     }
 }
- */
