@@ -1,7 +1,7 @@
 # Brick Furnace 
 
-[![Curseforge](http://cf.way2muchnoise.eu/full_brick-furnace_downloads(0D0D0D-F16436-fff-010101-fff).svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace)
-[![Curseforge](http://cf.way2muchnoise.eu/versions/For%20MC_brick-furnace_all(0D0D0D-F16436-fff-010101).svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace/files)
+[![Curseforge](http://cf.way2muchnoise.eu/full_363593_downloads(0D0D0D-F16436-fff-010101-fff).svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace)
+[![Curseforge](http://cf.way2muchnoise.eu/versions/For%20MC_363593_all(0D0D0D-F16436-fff-010101).svg)](https://www.curseforge.com/minecraft/mc-mods/brick-furnace/files)
 [![Modrinth](https://img.shields.io/modrinth/dt/yzHyAUSI?label=Modrinth&logo=modrinth)](https://modrinth.com/mod/brick-furnace)
 [![CI/CD](https://github.com/cech12/BrickFurnace/actions/workflows/cicd-workflow.yml/badge.svg)](https://github.com/cech12/BrickFurnace/actions/workflows/cicd-workflow.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/cech12/brickfurnace/badge)](https://www.codefactor.io/repository/github/cech12/brickfurnace)
