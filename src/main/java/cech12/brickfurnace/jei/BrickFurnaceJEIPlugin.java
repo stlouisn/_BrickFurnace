@@ -16,6 +16,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -59,16 +60,16 @@ public class BrickFurnaceJEIPlugin implements IModPlugin {
 
             if (ServerConfig.VANILLA_RECIPES_ENABLED.get()) {
                 registration.addRecipes(smeltingRecipeType.getRecipeType(), manager.getAllRecipesFor(RecipeType.SMELTING).stream()
-                        .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
-                        .map(recipe -> BrickSmeltingRecipe.convert(recipe, player.level().registryAccess()))
+                        .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.id()))
+                        .map(recipe -> new RecipeHolder<>(recipe.id(), BrickSmeltingRecipe.convert(recipe.value(), player.level().registryAccess())))
                         .collect(Collectors.toList()));
                 registration.addRecipes(smokingRecipeType.getRecipeType(), manager.getAllRecipesFor(RecipeType.SMOKING).stream()
-                        .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
-                        .map(recipe -> BrickSmokingRecipe.convert(recipe, player.level().registryAccess()))
+                        .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.id()))
+                        .map(recipe -> new RecipeHolder<>(recipe.id(), BrickSmokingRecipe.convert(recipe.value(), player.level().registryAccess())))
                         .collect(Collectors.toList()));
                 registration.addRecipes(blastingRecipeType.getRecipeType(), manager.getAllRecipesFor(RecipeType.BLASTING).stream()
-                        .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.getId()))
-                        .map(recipe -> BrickBlastingRecipe.convert(recipe, player.level().registryAccess()))
+                        .filter(recipe -> ServerConfig.isRecipeNotBlacklisted(recipe.id()))
+                        .map(recipe -> new RecipeHolder<>(recipe.id(), BrickBlastingRecipe.convert(recipe.value(), player.level().registryAccess())))
                         .collect(Collectors.toList()));
             }
         }

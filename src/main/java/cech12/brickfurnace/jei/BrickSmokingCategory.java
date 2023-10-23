@@ -7,6 +7,7 @@ import cech12.brickfurnace.crafting.BrickSmokingRecipe;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import javax.annotation.Nonnull;
 
@@ -18,8 +19,9 @@ public class BrickSmokingCategory extends AbstractCookingCategory<BrickSmokingRe
 
     @Override
     @Nonnull
-    public RecipeType<BrickSmokingRecipe> getRecipeType() {
-        return new RecipeType<>(ModRecipeTypes.SMOKING.getId(), BrickSmokingRecipe.class);
+    public RecipeType<RecipeHolder<BrickSmokingRecipe>> getRecipeType() {
+        Class<? extends RecipeHolder<BrickSmokingRecipe>> holderClass = (Class<? extends RecipeHolder<BrickSmokingRecipe>>) (Object) RecipeHolder.class;
+        return new RecipeType<>(ModRecipeTypes.SMOKING.getId(), holderClass);
     }
 
 }

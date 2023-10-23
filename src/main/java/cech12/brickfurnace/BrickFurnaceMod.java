@@ -1,6 +1,6 @@
 package cech12.brickfurnace;
 
-import cech12.brickfurnace.compat.TOPCompat;
+//import cech12.brickfurnace.compat.TOPCompat;
 import cech12.brickfurnace.init.ModBlockEntityTypes;
 import cech12.brickfurnace.init.ModBlocks;
 import cech12.brickfurnace.init.ModItems;
@@ -40,7 +40,7 @@ public class BrickFurnaceMod {
         ServerConfig.loadConfig(ServerConfig.SERVER_CONFIG, FMLPaths.GAMEDIR.get().resolve(FMLConfig.defaultConfigPath()).resolve(MOD_ID + "-server.toml"));
         //The One Probe registration.
         if (ModList.get().isLoaded("theoneprobe") && !ModList.get().isLoaded("topaddons")) {
-            TOPCompat.register();
+            //TOPCompat.register();
         }
     }
 

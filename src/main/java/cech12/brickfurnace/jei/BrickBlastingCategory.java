@@ -7,6 +7,7 @@ import cech12.brickfurnace.crafting.BrickBlastingRecipe;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import javax.annotation.Nonnull;
 
@@ -18,8 +19,9 @@ public class BrickBlastingCategory extends AbstractCookingCategory<BrickBlasting
 
     @Override
     @Nonnull
-    public RecipeType<BrickBlastingRecipe> getRecipeType() {
-        return new RecipeType<>(ModRecipeTypes.BLASTING.getId(), BrickBlastingRecipe.class);
+    public RecipeType<RecipeHolder<BrickBlastingRecipe>> getRecipeType() {
+        Class<? extends RecipeHolder<BrickBlastingRecipe>> holderClass = (Class<? extends RecipeHolder<BrickBlastingRecipe>>) (Object) RecipeHolder.class;
+        return new RecipeType<>(ModRecipeTypes.BLASTING.getId(), holderClass);
     }
 
 }

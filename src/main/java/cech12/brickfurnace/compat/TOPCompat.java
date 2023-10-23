@@ -1,5 +1,5 @@
 package cech12.brickfurnace.compat;
-
+/*
 import cech12.brickfurnace.BrickFurnaceMod;
 import cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
 import mcjty.theoneprobe.api.CompoundText;
@@ -72,3 +72,4 @@ public class TOPCompat {
         }
     }
 }
+ */
