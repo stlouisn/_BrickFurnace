@@ -85,7 +85,7 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
                 entity.dataAccess.set(COOK_TIME, entity.dataAccess.get(COOK_TIME) + 1); //changed because of private variable
                 if (entity.dataAccess.get(COOK_TIME) == entity.dataAccess.get(COOK_TIME_TOTAL)) { //changed because of private variable
                     entity.dataAccess.set(COOK_TIME, 0); //changed because of private variable
-                    entity.dataAccess.set(COOK_TIME_TOTAL, entity.getTotalCookTime()); //changed because of private variable
+                    entity.dataAccess.set(COOK_TIME_TOTAL, entity.getTotalCookTime(entity.getRecipe())); //changed because of private variable
                     entity.smeltItem(irecipe);
                     dirty = true;
                 }
@@ -142,8 +142,7 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
         }
     }
 
-    private int getTotalCookTime() {
-        RecipeHolder<? extends AbstractCookingRecipe> rec = getRecipe();
+    private int getTotalCookTime(RecipeHolder<? extends AbstractCookingRecipe> rec) {
         if (rec == null) {
             return 200;
         } else if (this.specificRecipeType.getClass().isInstance(rec.value().getType())) {
@@ -173,6 +172,7 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
             } else {
                 failedMatch = ItemStack.EMPTY;
             }
+            dataAccess.set(COOK_TIME_TOTAL, getTotalCookTime(rec));
             return curRecipe = rec;
         }
     }
