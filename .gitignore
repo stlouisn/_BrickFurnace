@@ -20,6 +20,8 @@ build
 # other
 eclipse
 run
+runs
+run-data
 runTest
 
 # Files from Forge MDK

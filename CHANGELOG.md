@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.20.4-3.0.0.0] - 2024-04-02
+### Changed
+- updated to Minecraft 1.20.4 (Forge 49.0.38, Neoforge 20.4.218)
+- updated JEI support to 17.3.0.49 (Forge & Neoforge)
+- updated The One Probe support to 1.20.4_neo-11.0.2-3 (Neoforge)
+- updated Immersive Engineering support to 1.20.4-11.1.0-172 (Neoforge)
+- rename config option "recipeBlacklist" to "recipeBlockedList"
+
+### Known issues
+- Villagers cannot use Brick Blast Furnace or Brick Smoker as workplace in Neoforge
+
 ## [1.20.2-2.2.0.3] - 2024-03-31
 ### Fixed
 - fuel consumption of Brick Smoker & Brick Blast Furnace were incorrect (thanks to t3chdelicious for the report)
