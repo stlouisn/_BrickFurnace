@@ -1,6 +1,5 @@
 package de.cech12.brickfurnace.init;
 
-import de.cech12.brickfurnace.BrickFurnaceMod;
 import de.cech12.brickfurnace.Constants;
 import de.cech12.brickfurnace.blockentity.BrickBlastFurnaceBlockEntity;
 import de.cech12.brickfurnace.blockentity.BrickFurnaceBlockEntity;
@@ -11,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public final class ModBlockEntityTypes {
 
-    public static DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, BrickFurnaceMod.MOD_ID);
+    public static DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, Constants.MOD_ID);
 
     static {
         Constants.BRICK_FURNACE_BLOCK_ENTITY_TYPE = BLOCK_ENTITY_TYPES.register(Constants.BRICK_FURNACE_NAME, () -> BlockEntityType.Builder.of(BrickFurnaceBlockEntity::new, Constants.BRICK_FURNACE_BLOCK.get()).build(null));

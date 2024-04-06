@@ -23,7 +23,7 @@ It adds a **Brick Furnace**, a **Brick Blast Furnace** and a **Brick Smoker**. T
 
 Villagers **can** use a **Brick Blast Furnace** or a **Brick Smoker** as workplace.
 
-Vanilla recipes can be blacklisted or disabled. 
+Vanilla recipes can be disabled completely or individual recipes can be blocked. 
 
 Special recipes for the brick furnaces can be added via CraftTweaker or datapacks.
 

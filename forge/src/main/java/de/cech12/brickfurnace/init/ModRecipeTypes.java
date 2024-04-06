@@ -1,6 +1,5 @@
 package de.cech12.brickfurnace.init;
 
-import de.cech12.brickfurnace.BrickFurnaceMod;
 import de.cech12.brickfurnace.Constants;
 import de.cech12.brickfurnace.crafting.BrickBlastingRecipe;
 import de.cech12.brickfurnace.crafting.BrickSmeltingRecipe;
@@ -13,8 +12,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModRecipeTypes {
 
-    public static DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, BrickFurnaceMod.MOD_ID);
-    public static DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, BrickFurnaceMod.MOD_ID);
+    public static DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, Constants.MOD_ID);
+    public static DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Constants.MOD_ID);
 
     public static RegistryObject<RecipeSerializer<?>> BLASTING_SERIALIZER = RECIPE_SERIALIZERS.register(Constants.BLASTING_NAME, () -> BrickBlastingRecipe.SERIALIZER);
     public static RegistryObject<RecipeSerializer<?>> SMELTING_SERIALIZER = RECIPE_SERIALIZERS.register(Constants.SMELTING_NAME, () -> BrickSmeltingRecipe.SERIALIZER);

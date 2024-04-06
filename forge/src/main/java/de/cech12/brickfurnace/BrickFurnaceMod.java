@@ -3,22 +3,28 @@ package de.cech12.brickfurnace;
 import de.cech12.brickfurnace.init.ModBlockEntityTypes;
 import de.cech12.brickfurnace.init.ModBlocks;
 import de.cech12.brickfurnace.init.ModItems;
-import de.cech12.brickfurnace.init.ModPoiTypes;
 import de.cech12.brickfurnace.init.ModRecipeTypes;
+import de.cech12.brickfurnace.mixin.PoiTypeAccessor;
+import de.cech12.brickfurnace.mixin.PoiTypesAccessor;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 
-import static de.cech12.brickfurnace.BrickFurnaceMod.MOD_ID;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-@Mod(MOD_ID)
-@Mod.EventBusSubscriber(modid= MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod(Constants.MOD_ID)
+@Mod.EventBusSubscriber(modid= Constants.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class BrickFurnaceMod {
-
-    public static final String MOD_ID = "brickfurnace";
 
     public BrickFurnaceMod() {
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,9 +33,33 @@ public class BrickFurnaceMod {
         ModItems.ITEMS.register(eventBus);
         ModRecipeTypes.RECIPE_TYPES.register(eventBus);
         ModRecipeTypes.RECIPE_SERIALIZERS.register(eventBus);
-        ModPoiTypes.POI_TYPES.register(eventBus);
-        //Config
+
         CommonLoader.init();
+    }
+
+    @SubscribeEvent
+    public static void register(RegisterEvent event) {
+        if (ForgeRegistries.POI_TYPES.equals(event.getForgeRegistry())) {
+            event.register(ForgeRegistries.Keys.POI_TYPES, pointOfInterestTypeRegisterHelper -> {
+                //CommonLoader.initPoiStates(key -> ForgeRegistries.POI_TYPES.getDelegate(key).get().get(), key -> ForgeRegistries.POI_TYPES.getHolder(key).get());
+
+                Set<BlockState> addedStates = new HashSet<>(Constants.BRICK_BLAST_FURNACE_BLOCK.get().getStateDefinition().getPossibleStates());
+                Set<BlockState> newStates = new HashSet<>();
+                newStates.addAll(((PoiTypeAccessor)(Object)ForgeRegistries.POI_TYPES.getValue(PoiTypes.ARMORER.location())).getMatchingStates());
+                newStates.addAll(addedStates);
+                PoiType pointOfInterestType = new PoiType(newStates, 1, 1);
+                ForgeRegistries.POI_TYPES.register("minecraft:armorer", pointOfInterestType);
+                PoiTypesAccessor.setArmorer(ForgeRegistries.POI_TYPES.getHolder(pointOfInterestType).get().unwrapKey().get());
+
+                addedStates = new HashSet<>(Constants.BRICK_SMOKER_BLOCK.get().getStateDefinition().getPossibleStates());
+                newStates = new HashSet<>();
+                newStates.addAll(((PoiTypeAccessor)(Object)ForgeRegistries.POI_TYPES.getValue(PoiTypes.BUTCHER.location())).getMatchingStates());
+                newStates.addAll(addedStates);
+                pointOfInterestType = new PoiType(newStates, 1, 1);
+                ForgeRegistries.POI_TYPES.register("minecraft:butcher", pointOfInterestType);
+                PoiTypesAccessor.setButcher(ForgeRegistries.POI_TYPES.getHolder(pointOfInterestType).get().unwrapKey().get());
+            });
+        }
     }
 
     @SubscribeEvent

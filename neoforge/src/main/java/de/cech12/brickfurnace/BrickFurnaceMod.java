@@ -4,22 +4,20 @@ import de.cech12.brickfurnace.compat.TOPCompat;
 import de.cech12.brickfurnace.init.ModBlockEntityTypes;
 import de.cech12.brickfurnace.init.ModBlocks;
 import de.cech12.brickfurnace.init.ModItems;
-import de.cech12.brickfurnace.init.ModPoiTypes;
 import de.cech12.brickfurnace.init.ModRecipeTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
-import static de.cech12.brickfurnace.BrickFurnaceMod.MOD_ID;
-
-@Mod(MOD_ID)
-@Mod.EventBusSubscriber(modid= MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
+@Mod(Constants.MOD_ID)
+@Mod.EventBusSubscriber(modid= Constants.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class BrickFurnaceMod {
-
-    public static final String MOD_ID = "brickfurnace";
 
     public BrickFurnaceMod(IEventBus eventBus) {
         ModBlocks.BLOCKS.register(eventBus);
@@ -27,12 +25,19 @@ public class BrickFurnaceMod {
         ModItems.ITEMS.register(eventBus);
         ModRecipeTypes.RECIPE_TYPES.register(eventBus);
         ModRecipeTypes.RECIPE_SERIALIZERS.register(eventBus);
-        //ModPoiTypes.POI_TYPES.register(eventBus); //TODO POI registration does not work in Neoforge - find another way
-        //Config
+
         CommonLoader.init();
+
         //The One Probe registration.
         if (ModList.get().isLoaded("theoneprobe") && !ModList.get().isLoaded("topaddons")) {
             TOPCompat.register();
+        }
+    }
+
+    @SubscribeEvent
+    public static void register(RegisterEvent event) {
+        if (event.getRegistry() == BuiltInRegistries.POINT_OF_INTEREST_TYPE) {
+            event.register(BuiltInRegistries.POINT_OF_INTEREST_TYPE.key(), pointOfInterestTypeRegisterHelper -> CommonLoader.initPoiStates(BuiltInRegistries.POINT_OF_INTEREST_TYPE::get, BuiltInRegistries.POINT_OF_INTEREST_TYPE::getHolderOrThrow));
         }
     }
 

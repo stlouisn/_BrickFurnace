@@ -1,6 +1,5 @@
 package de.cech12.brickfurnace.init;
 
-import de.cech12.brickfurnace.BrickFurnaceMod;
 import de.cech12.brickfurnace.Constants;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -12,7 +11,7 @@ import java.util.function.Supplier;
 
 public class ModItems {
 
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.createItems(BrickFurnaceMod.MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.createItems(Constants.MOD_ID);
 
     static {
         Constants.BRICK_FURNACE_ITEM = fromBlock(Constants.BRICK_FURNACE_NAME, Constants.BRICK_FURNACE_BLOCK);

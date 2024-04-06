@@ -1,6 +1,5 @@
 package de.cech12.brickfurnace.init;
 
-import de.cech12.brickfurnace.BrickFurnaceMod;
 import de.cech12.brickfurnace.Constants;
 import de.cech12.brickfurnace.block.BrickBlastFurnaceBlock;
 import de.cech12.brickfurnace.block.BrickFurnaceBlock;
@@ -18,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class ModBlocks {
 
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BrickFurnaceMod.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Constants.MOD_ID);
 
     static {
         Constants.BRICK_FURNACE_BLOCK = BLOCKS.register(Constants.BRICK_FURNACE_NAME, () -> new BrickFurnaceBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).requiresCorrectToolForDrops().strength(2.0F, 6.0F).lightLevel(getLightLevelWhenLit(13))));
