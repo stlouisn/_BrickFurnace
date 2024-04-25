@@ -38,7 +38,7 @@ versionRange="${top_version_range}"
 referralUrl="https://www.curseforge.com/minecraft/mc-mods/the-one-probe"
 ordering="NONE"
 side="BOTH"
-[[dependencies.brickfurnace]]
+[[dependencies.${mod_id}]]
 modId="immersiveengineering"
 type="optional"
 versionRange="${immersive_engineering_version_range}"
