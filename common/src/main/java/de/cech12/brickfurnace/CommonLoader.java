@@ -6,6 +6,7 @@ import de.cech12.brickfurnace.mixin.PoiTypesAccessor;
 import de.cech12.brickfurnace.platform.Services;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +26,10 @@ public class CommonLoader {
      */
     public static void init() {
         Services.CONFIG.init();
+    }
+
+    public static ResourceLocation id(String name) {
+        return new ResourceLocation(Constants.MOD_ID, name);
     }
 
     /**

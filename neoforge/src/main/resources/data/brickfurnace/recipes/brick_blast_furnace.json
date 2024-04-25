@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "III",
+    "IXI",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/brick"
+    },
+    "X": {
+      "item": "brickfurnace:brick_furnace"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "brickfurnace:brick_blast_furnace"
+  }
+}

@@ -9,7 +9,12 @@
 [![License](https://img.shields.io/github/license/cech12/BrickFurnace)](http://opensource.org/licenses/MIT)
 [![](https://img.shields.io/discord/752506676719910963.svg?style=flat&color=informational&logo=discord&label=Discord)](https://discord.gg/gRUFH5t)
 
-This **Minecraft Forge** mod adds **Brick Furnaces** to the game.
+This Minecraft mod adds **Brick Furnaces** to the game. (Forge, NeoForge, Fabric, Quilt)
+
+The Fabric / Quilt version needs the following mods:
+
+- Fabric API ([Github](https://github.com/FabricMC/fabric), [Curseforge](https://www.curseforge.com/minecraft/mc-mods/fabric-api), [Modrinth](https://modrinth.com/mod/fabric-api))
+- Cloth Config API ([Github](https://github.com/shedaniel/cloth-config), [Curseforge](https://www.curseforge.com/minecraft/mc-mods/cloth-config), [Modrinth](https://modrinth.com/mod/cloth-config))
 
 ![All Furnaces](material/all_furnaces.png)
 
