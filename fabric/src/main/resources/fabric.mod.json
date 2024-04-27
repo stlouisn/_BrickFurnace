@@ -21,6 +21,9 @@
     ],
     "modmenu": [
       "${group}.compat.ModMenuCompat"
+    ],
+    "jei_mod_plugin": [
+      "${group}.jei.BrickFurnaceJEIPlugin"
     ]
   },
   "mixins": [

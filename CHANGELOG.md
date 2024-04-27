@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.20.4-3.1.0.1] - 2024-04-27
+### Fixed
+- JEI plugin was not loaded in Fabric/Quilt
+
 ## [1.20.4-3.1.0.0] - 2024-04-25
 ### Added
 - add Fabric (>=0.96.11+1.20.4) support (Fabric, Quilt)
