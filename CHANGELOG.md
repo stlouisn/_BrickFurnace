@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.20.4-3.1.1.0] - 2024-05-11
+### Added
+- registering ItemHandlers to be more compatible with other mods (NeoForge)
+
+### Fixed
+- Brick Furnace recipe advancement triggered with first inventory change (Fabric/Quilt)
+
 ## [1.20.4-3.1.0.1] - 2024-04-27
 ### Fixed
 - JEI plugin was not loaded in Fabric/Quilt

@@ -6,15 +6,18 @@ import de.cech12.brickfurnace.init.ModBlocks;
 import de.cech12.brickfurnace.init.ModItems;
 import de.cech12.brickfurnace.init.ModRecipeTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
+@SuppressWarnings("unused")
 @Mod(Constants.MOD_ID)
 @Mod.EventBusSubscriber(modid= Constants.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class BrickFurnaceMod {
@@ -39,6 +42,13 @@ public class BrickFurnaceMod {
         if (event.getRegistry() == BuiltInRegistries.POINT_OF_INTEREST_TYPE) {
             event.register(BuiltInRegistries.POINT_OF_INTEREST_TYPE.key(), pointOfInterestTypeRegisterHelper -> CommonLoader.initPoiStates(BuiltInRegistries.POINT_OF_INTEREST_TYPE::get, BuiltInRegistries.POINT_OF_INTEREST_TYPE::getHolderOrThrow));
         }
+    }
+
+    @SubscribeEvent
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, Constants.BRICK_FURNACE_BLOCK_ENTITY_TYPE.get(), SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, Constants.BRICK_BLAST_FURNACE_BLOCK_ENTITY_TYPE.get(), SidedInvWrapper::new);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, Constants.BRICK_SMOKER_BLOCK_ENTITY_TYPE.get(), SidedInvWrapper::new);
     }
 
     @SubscribeEvent
