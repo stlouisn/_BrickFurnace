@@ -1,6 +1,5 @@
 package de.cech12.brickfurnace.init;
 
-import de.cech12.brickfurnace.CommonLoader;
 import de.cech12.brickfurnace.Constants;
 import de.cech12.brickfurnace.crafting.BrickBlastingRecipe;
 import de.cech12.brickfurnace.crafting.BrickSmeltingRecipe;
@@ -30,11 +29,11 @@ public class ModRecipeTypes {
     public static void init() {}
 
     private static <T extends AbstractCookingRecipe> RecipeType<T> registerRecipe(String name) {
-        return Registry.register(BuiltInRegistries.RECIPE_TYPE, CommonLoader.id(name), new RecipeType<>() {});
+        return Registry.register(BuiltInRegistries.RECIPE_TYPE, Constants.id(name), new RecipeType<>() {});
     }
 
     private static <T extends AbstractCookingRecipe> RecipeSerializer<T> registerSerializer(String name, RecipeSerializer<T> serializer) {
-        return Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, CommonLoader.id(name), serializer);
+        return Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, Constants.id(name), serializer);
     }
 
 }

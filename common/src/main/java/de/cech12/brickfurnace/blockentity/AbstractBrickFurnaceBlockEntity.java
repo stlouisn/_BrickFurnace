@@ -2,16 +2,19 @@ package de.cech12.brickfurnace.blockentity;
 
 import de.cech12.brickfurnace.platform.Services;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
@@ -157,15 +160,16 @@ public abstract class AbstractBrickFurnaceBlockEntity extends AbstractFurnaceBlo
         if (input.isEmpty() || input == failedMatch) {
             return null;
         }
-        if (this.level != null && curRecipe != null && curRecipe.value().matches(this, level)) {
+        SingleRecipeInput recipeInput = new SingleRecipeInput(input);
+        if (this.level != null && curRecipe != null && curRecipe.value().matches(recipeInput, level)) {
             dataAccess.set(COOK_TIME_TOTAL, getTotalCookTime(curRecipe));
             return curRecipe;
         } else {
             RecipeHolder<? extends AbstractCookingRecipe> rec = null;
             if (this.level != null) {
-                rec = this.level.getRecipeManager().getRecipeFor(this.specificRecipeType, this, this.level).orElse(null);
+                rec = this.level.getRecipeManager().getRecipeFor(this.specificRecipeType, recipeInput, this.level).orElse(null);
                 if (rec == null && Services.CONFIG.areVanillaRecipesEnabled()) {
-                    rec = this.level.getRecipeManager().getRecipesFor(this.vanillaRecipeType, this, this.level)
+                    rec = this.level.getRecipeManager().getRecipesFor(this.vanillaRecipeType, recipeInput, this.level)
                             .stream().filter(abstractCookingRecipe -> Services.CONFIG.isRecipeAllowed(abstractCookingRecipe.id())).findFirst().orElse(null);
                 }
             }

@@ -35,11 +35,11 @@ public class TOPCompat {
         public Void apply(ITheOneProbe probe) {
             probe.registerProvider(new IProbeInfoProvider() {
                 private static final IIconStyle FIRE_STYLE =  new IconStyle().bounds(8, 8).textureBounds(8, 64);
-                private static final ResourceLocation FIRE_ICON = new ResourceLocation("minecraft:textures/block/campfire_fire.png");
+                private static final ResourceLocation FIRE_ICON = ResourceLocation.withDefaultNamespace("textures/block/campfire_fire.png");
 
                 @Override
                 public ResourceLocation getID() {
-                    return new ResourceLocation(Constants.MOD_ID, "brickfurnaceinfo");
+                    return Constants.id("brickfurnaceinfo");
                 }
 
                 @Override

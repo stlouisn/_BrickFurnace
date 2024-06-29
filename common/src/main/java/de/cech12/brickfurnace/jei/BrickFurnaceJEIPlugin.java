@@ -13,10 +13,10 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
 
 import javax.annotation.Nonnull;
@@ -32,7 +32,7 @@ public class BrickFurnaceJEIPlugin implements IModPlugin {
     @Override
     @Nonnull
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(Constants.MOD_ID, "plugin_" + Constants.MOD_ID);
+        return Constants.id("plugin_" + Constants.MOD_ID);
     }
 
     @Override

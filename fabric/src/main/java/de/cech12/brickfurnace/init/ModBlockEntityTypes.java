@@ -1,6 +1,5 @@
 package de.cech12.brickfurnace.init;
 
-import de.cech12.brickfurnace.CommonLoader;
 import de.cech12.brickfurnace.Constants;
 import de.cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
 import de.cech12.brickfurnace.blockentity.BrickBlastFurnaceBlockEntity;
@@ -25,7 +24,7 @@ public final class ModBlockEntityTypes {
     public static void init() {}
 
     private static BlockEntityType<? extends AbstractBrickFurnaceBlockEntity> register(String name, BlockEntityType.Builder<? extends AbstractBrickFurnaceBlockEntity> blockEntityTypeBuilder) {
-        return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, CommonLoader.id(name), blockEntityTypeBuilder.build(null));
+        return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Constants.id(name), blockEntityTypeBuilder.build(null));
     }
 
 }

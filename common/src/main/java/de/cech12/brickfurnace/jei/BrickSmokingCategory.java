@@ -6,7 +6,6 @@ import de.cech12.brickfurnace.platform.Services;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
 import javax.annotation.Nonnull;
@@ -21,7 +20,7 @@ public class BrickSmokingCategory extends AbstractCookingCategory<BrickSmokingRe
     @Nonnull
     public RecipeType<RecipeHolder<BrickSmokingRecipe>> getRecipeType() {
         Class<? extends RecipeHolder<BrickSmokingRecipe>> holderClass = (Class<? extends RecipeHolder<BrickSmokingRecipe>>) (Object) RecipeHolder.class;
-        return new RecipeType<>(new ResourceLocation(Constants.MOD_ID, Constants.SMOKING_NAME), holderClass);
+        return new RecipeType<>(Constants.id(Constants.SMOKING_NAME), holderClass);
     }
 
 }

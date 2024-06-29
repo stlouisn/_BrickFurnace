@@ -1,6 +1,5 @@
 package de.cech12.brickfurnace.init;
 
-import de.cech12.brickfurnace.CommonLoader;
 import de.cech12.brickfurnace.Constants;
 import de.cech12.brickfurnace.block.BrickBlastFurnaceBlock;
 import de.cech12.brickfurnace.block.BrickFurnaceBlock;
@@ -10,8 +9,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.MapColor;
 
 import java.util.function.ToIntFunction;
 
@@ -30,7 +29,7 @@ public final class ModBlocks {
     public static void init() {}
 
     private static Block register(String name, Block block) {
-        return Registry.register(BuiltInRegistries.BLOCK, CommonLoader.id(name), block);
+        return Registry.register(BuiltInRegistries.BLOCK, Constants.id(name), block);
     }
 
     private static ToIntFunction<BlockState> getLightLevelWhenLit(final int lightLevel) {
