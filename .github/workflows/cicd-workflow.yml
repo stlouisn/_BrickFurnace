@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [ "*" ]
-    tags: ["1.21*"]
+    tags: ["1.20*"]
   pull_request:
     branches: [ "*" ]
 
