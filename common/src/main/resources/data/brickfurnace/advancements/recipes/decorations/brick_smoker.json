@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "brickfurnace:brick_furnace"
-            ]
+            "items": "brickfurnace:brick_furnace"
           }
         ]
       }

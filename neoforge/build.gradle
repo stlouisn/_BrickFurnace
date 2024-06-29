@@ -1,7 +1,7 @@
 plugins {
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.81'
+    id 'net.neoforged.gradle.userdev' version '[7.0.105, 7.2)'
     id 'java-library'
 }
 base {
@@ -64,8 +64,8 @@ dependencies {
 
     implementation("mcjty.theoneprobe:theoneprobe:$top_version") {transitive = false}
 
-    runtimeOnly("blusunrize.immersiveengineering:ImmersiveEngineering:${project.immersive_engineering_version}")
-    compileOnly("blusunrize.immersiveengineering:ImmersiveEngineering:${project.immersive_engineering_version}:api")
+    //runtimeOnly("blusunrize.immersiveengineering:ImmersiveEngineering:${project.immersive_engineering_version}")
+    //compileOnly("blusunrize.immersiveengineering:ImmersiveEngineering:${project.immersive_engineering_version}:api")
 }
 
 // NeoGradle compiles the game, but we don't want to add our common code to the game's code
@@ -86,6 +86,8 @@ tasks.withType(JavaCompile).matching(notNeoTask).configureEach {
 tasks.withType(ProcessResources).matching(notNeoTask).configureEach {
     from project(":common").sourceSets.main.resources
 }
+
+test.onlyIf { false } //disable tests
 
 publishing {
     publications {

@@ -23,7 +23,6 @@
     }
   },
   "result": {
-    "item": "environmental:kiln",
-    "count": 1
+    "id": "environmental:kiln"
   }
 }

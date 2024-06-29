@@ -8,16 +8,16 @@
   ],
   "key": {
     "#": {
-      "tag": "forge:ingots/brick"
+      "item": "minecraft:bricks"
     },
     "X": {
       "item": "brickfurnace:brick_furnace"
     },
     "I": {
-      "tag": "forge:ingots/iron"
+      "tag": "c:ingots/iron"
     }
   },
   "result": {
-    "item": "brickfurnace:brick_blast_furnace"
+    "id": "brickfurnace:brick_blast_furnace"
   }
 }

@@ -8,10 +8,10 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:brick"
+      "tag": "c:bricks/normal"
     }
   },
   "result": {
-    "item": "brickfurnace:brick_furnace"
+    "id": "brickfurnace:brick_furnace"
   }
 }
