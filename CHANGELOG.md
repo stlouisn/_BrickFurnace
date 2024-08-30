@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Forge Recommended Versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/).
 
+## [1.21-4.1.1.0] - 2024-08-30
+### Changed
+- cook time factor config option is now a text field instead of a slider (thanks to NattoRiisa for the hint) #34
+
 ## [1.21-4.1.0.1] - 2024-08-10
 ### Fixed
 - fixed startup crash for Forge

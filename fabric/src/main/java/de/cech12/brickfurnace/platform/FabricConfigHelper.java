@@ -17,8 +17,7 @@ public class FabricConfigHelper implements ConfigData, IConfigHelper {
     @ConfigEntry.Gui.Tooltip(count = 4)
     public boolean VANILLA_RECIPES_ENABLED = VANILLA_RECIPES_ENABLED_DEFAULT;
 
-    @ConfigEntry.Gui.Tooltip(count = 5)
-    @ConfigEntry.BoundedDiscrete(min = (long) (COOK_TIME_FACTOR_MIN * 100), max = (long) (COOK_TIME_FACTOR_MAX * 100))
+    @ConfigEntry.Gui.Tooltip(count = 6)
     public long COOK_TIME_FACTOR = (long) (COOK_TIME_FACTOR_DEFAULT * 100);
 
     @ConfigEntry.Gui.Tooltip(count = 5)
@@ -40,7 +39,7 @@ public class FabricConfigHelper implements ConfigData, IConfigHelper {
 
     @Override
     public double getCookTimeFactor() {
-        return getConfig().COOK_TIME_FACTOR / 100D;
+        return Math.clamp(getConfig().COOK_TIME_FACTOR / 100D, COOK_TIME_FACTOR_MIN, COOK_TIME_FACTOR_MAX);
     }
 
     @Override

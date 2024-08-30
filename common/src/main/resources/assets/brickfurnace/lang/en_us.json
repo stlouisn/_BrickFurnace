@@ -19,7 +19,8 @@
   "text.autoconfig.brickfurnace.option.COOK_TIME_FACTOR.@Tooltip[1]": "Cook time factor of all added brick furnaces in relation",
   "text.autoconfig.brickfurnace.option.COOK_TIME_FACTOR.@Tooltip[2]": "to corresponding vanilla furnaces. (percent)",
   "text.autoconfig.brickfurnace.option.COOK_TIME_FACTOR.@Tooltip[3]": "§7§o50 - half the time, 100 same time, 200 twice the time",
-  "text.autoconfig.brickfurnace.option.COOK_TIME_FACTOR.@Tooltip[4]": "§7§oDefault: 100",
+  "text.autoconfig.brickfurnace.option.COOK_TIME_FACTOR.@Tooltip[4]": "§7§oMin: 0; Max: 10000",
+  "text.autoconfig.brickfurnace.option.COOK_TIME_FACTOR.@Tooltip[5]": "§7§oDefault: 100",
 
   "text.autoconfig.brickfurnace.option.RECIPE_BLOCKED_LIST": "Recipe blocked list",
   "text.autoconfig.brickfurnace.option.RECIPE_BLOCKED_LIST.@Tooltip[0]": "§6§lRecipe blocked list",
