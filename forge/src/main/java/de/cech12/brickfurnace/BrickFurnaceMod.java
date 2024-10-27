@@ -18,7 +18,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,8 +25,8 @@ import java.util.Set;
 @Mod.EventBusSubscriber(modid= Constants.MOD_ID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class BrickFurnaceMod {
 
-    public BrickFurnaceMod() {
-        final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public BrickFurnaceMod(FMLJavaModLoadingContext context) {
+        final IEventBus eventBus = context.getModEventBus();
         ModBlocks.BLOCKS.register(eventBus);
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(eventBus);
         ModItems.ITEMS.register(eventBus);

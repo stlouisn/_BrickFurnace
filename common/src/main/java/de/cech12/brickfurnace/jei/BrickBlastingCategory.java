@@ -8,19 +8,11 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
-import javax.annotation.Nonnull;
-
 public class BrickBlastingCategory extends AbstractCookingCategory<BrickBlastingRecipe> {
 
     public BrickBlastingCategory(IGuiHelper guiHelper) {
-        super(guiHelper, Constants.BRICK_BLAST_FURNACE_BLOCK.get(), "gui.jei.category.blasting", (int) (100 * Services.CONFIG.getCookTimeFactor()));
-    }
-
-    @Override
-    @Nonnull
-    public RecipeType<RecipeHolder<BrickBlastingRecipe>> getRecipeType() {
-        Class<? extends RecipeHolder<BrickBlastingRecipe>> holderClass = (Class<? extends RecipeHolder<BrickBlastingRecipe>>) (Object) RecipeHolder.class;
-        return new RecipeType<>(Constants.id(Constants.BLASTING_NAME), holderClass);
+        super(guiHelper, new RecipeType<>(Constants.id(Constants.BLASTING_NAME), (Class<? extends RecipeHolder<BrickBlastingRecipe>>) (Object) RecipeHolder.class),
+                Constants.BRICK_BLAST_FURNACE_BLOCK.get(), "gui.jei.category.blasting", (int) (100 * Services.CONFIG.getCookTimeFactor()));
     }
 
 }

@@ -1,5 +1,5 @@
 package de.cech12.brickfurnace.compat.immersiveengineering;
-/*
+
 import blusunrize.immersiveengineering.api.tool.ExternalHeaterHandler;
 import de.cech12.brickfurnace.blockentity.AbstractBrickFurnaceBlockEntity;
 import de.cech12.brickfurnace.blockentity.BrickFurnaceBlockEntity;
@@ -8,9 +8,8 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import static net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity.*;
 
 public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatable {
     private static final int FULLY_HEATED_LIT_TIME = 200;
@@ -43,7 +42,7 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
         boolean canCook = canCook(furnace.getLevel().registryAccess());
         if (canCook || redstone) {
             ContainerData furnaceData = furnace.getContainerData();
-            int burnTime = furnaceData.get(DATA_LIT_TIME);
+            int burnTime = furnaceData.get(AbstractFurnaceBlockEntity.DATA_LIT_TIME);
             if (burnTime < FULLY_HEATED_LIT_TIME) {
                 final int heatEnergyRatio = Math.max(1, ExternalHeaterHandler.defaultFurnaceEnergyCost);
                 if (burnTime == 0 && energyAvailable < heatEnergyRatio) {
@@ -56,17 +55,17 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
                 int energyToUse = Math.min(energyAvailable, heatAttempt*heatEnergyRatio);
                 int heat = energyToUse/heatEnergyRatio;
                 if (heat > 0) {
-                    furnaceData.set(DATA_LIT_TIME, burnTime+heat);
+                    furnaceData.set(AbstractFurnaceBlockEntity.DATA_LIT_TIME, burnTime+heat);
                     energyConsumed += heat*heatEnergyRatio;
                     setFurnaceActive();
                 }
             }
             // Speed up once fully charged
-            if (canCook && furnaceData.get(DATA_LIT_TIME) >= FULLY_HEATED_LIT_TIME&&furnaceData.get(DATA_COOKING_PROGRESS) < BURN_TIME_STANDARD-1) {
+            if (canCook && furnaceData.get(AbstractFurnaceBlockEntity.DATA_LIT_TIME) >= FULLY_HEATED_LIT_TIME&&furnaceData.get(AbstractFurnaceBlockEntity.DATA_COOKING_PROGRESS) < AbstractFurnaceBlockEntity.BURN_TIME_STANDARD-1) {
                 int energyToUse = ExternalHeaterHandler.defaultFurnaceSpeedupCost;
                 if (energyAvailable - energyConsumed > energyToUse) {
                     energyConsumed += energyToUse;
-                    furnaceData.set(DATA_COOKING_PROGRESS, furnaceData.get(DATA_COOKING_PROGRESS)+1);
+                    furnaceData.set(AbstractFurnaceBlockEntity.DATA_COOKING_PROGRESS, furnaceData.get(AbstractFurnaceBlockEntity.DATA_COOKING_PROGRESS)+1);
                 }
             }
         }
@@ -82,4 +81,3 @@ public class BrickFurnaceHeater implements ExternalHeaterHandler.IExternalHeatab
         }
     }
 }
- */
